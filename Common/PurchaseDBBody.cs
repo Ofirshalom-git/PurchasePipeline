@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class PurchaseInformation
+    public class PurchaseDBBody
     {
         public string Id { get; set; }
         public string StoreType { get; set; }
@@ -23,21 +23,21 @@ namespace Common
         public bool IsValid { get; set; }
         public string WhyInvalid { get; set; }
         
-        public PurchaseInformation()
+        public PurchaseDBBody()
         {
 
         }
 
-        public PurchaseInformation(string purchaseID, string storeType, string activateDays, string storeID, string cardID, DateTime purchaseDate, DateTime insertionDate, double purchasePrice, int installments, double pricePerInstallment, bool isValid, string whyInvalid)
+        public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard, DateTime purchaseDate, DateTime insertionDate, double totalPrice, int installments, double pricePerInstallment, bool isValid, string whyInvalid)
         {
             Id = purchaseID;
             StoreType = storeType;
-            ActivityDays = activateDays;
             StoreID = storeID;
-            CreditCard = cardID;
+            ActivityDays = activateDays;
+            CreditCard = creditCard;
             PurchaseDate = purchaseDate;
             InsertionDate = insertionDate;
-            TotalPrice = purchasePrice;
+            TotalPrice = totalPrice;
             Installments = installments;
             PricePerInstallment = pricePerInstallment;
             IsValid = isValid;
