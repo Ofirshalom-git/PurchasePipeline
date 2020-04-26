@@ -24,7 +24,7 @@ namespace TestAutomaition
             SendCSVStringBody(ConvertCSVFileToText(file));
         }
 
-        private void SendCSVStringBody(string CSVBody)
+        public void SendCSVStringBody(string CSVBody)
         {
             using(var connection = Factory.CreateConnection())
             {
@@ -47,7 +47,7 @@ namespace TestAutomaition
             return body;
         }
 
-        private string ConvertCSVLineToText(CSVPurchaseLine purchase)
+        public string ConvertCSVLineToText(CSVPurchaseLine purchase)
         {
             if(purchase.Payments == "" || purchase.Payments == "FULL")
             {

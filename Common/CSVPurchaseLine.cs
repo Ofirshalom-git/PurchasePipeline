@@ -228,7 +228,7 @@ namespace Common
         {
             if (!IsValidCreditCard())
             {
-                return "Invalid credit card";
+                return "The credit card number is not valid"; //by DB
             }
 
             if (!IsValidInstallments())
@@ -242,7 +242,7 @@ namespace Common
             }
             if (!IsValidPrice())
             {
-                return "Invalid price";
+                return "Price per installment cant be higher than 5000"; //by DB
             }
 
             if (!IsValidPurchaseDateFormat())
