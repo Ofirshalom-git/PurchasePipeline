@@ -26,17 +26,13 @@ namespace Common
 
             foreach(var purchase in Purchases)
             {
-                if (purchase.isValidForDB())
+                if (purchase.IsValidForDB())
                 {
-                    PurchaseDBBody expectedPurchase = new PurchaseDBBody("unknown", purchase.StoreID[0]);
-                    
-                    //create expected db body
-
-                    expectedPurchases.Add(expectedPurchase);
+                    expectedPurchases.Add(purchase.ExpectedPurchaseDBBody());
                 }
             }
 
-            
+            return expectedPurchases;
         }
     }
 }

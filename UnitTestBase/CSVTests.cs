@@ -13,18 +13,22 @@ namespace UnitTestBase
     public class CSVTests : UnitTestBase
     {
         [TestMethod]        
-        public void ValidCSVInsertionSucceedTest1(int numOfLines, RabbitMQLogics rabbitMOLogics)
+        public void ValidCSVInsertionSucceedTest1()
         {
-            //CSVFile file = new CSVFile(list);
-            //RabbitMQLogics.SendCSVToRabbitMQ(file);
-            //DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(1, RabbitMQLogics, DBLogics);
+            for(var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            {
+                expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
+            }
         }
 
         public void ValidCSVInsertionSucceedTest2(int numOfLines, RabbitMQLogics rabbitMOLogics)
         {
-            //CSVFile file = new CSVFile(list);
-            //RabbitMQLogics.SendCSVToRabbitMQ(file);
-            //DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(3, RabbitMQLogics, DBLogics);
+            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            {
+                expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
+            }
         }
 
         [TestMethod]

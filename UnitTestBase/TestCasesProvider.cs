@@ -10,9 +10,9 @@ namespace UnitTestBase
 {
     public static class TestCasesProvider
     {
-        public static void SendValidCSVFile(int numOfLines, RabbitMQLogics rabbitMOLogics)
+        public static List<List<PurchaseDBBody>> SendValidCSVFile(int numOfLines, RabbitMQLogics rabbitMOLogics, DBLogics dbLogics)
         {
-            RandomizeCSVLine CsvLineRandomizer = new RandomizeCSVLine();
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
 
@@ -22,6 +22,12 @@ namespace UnitTestBase
             }
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
         }
     }
 }

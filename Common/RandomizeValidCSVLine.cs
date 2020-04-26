@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public class RandomizeCSVLine
+    public class RandomizeValidCSVLine
     {
         public string Price { get; set; }
 
-        public RandomizeCSVLine()
+        public RandomizeValidCSVLine()
         {
             Price = RandomizePayedPrice();
         }
