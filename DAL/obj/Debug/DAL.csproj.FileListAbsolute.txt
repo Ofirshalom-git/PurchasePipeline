@@ -1,0 +1,2 @@
+C:\Users\adisc\Desktop\חפיפות במסניקים\ofir\PurchasePipeline\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\adisc\Desktop\חפיפות במסניקים\ofir\PurchasePipeline\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache

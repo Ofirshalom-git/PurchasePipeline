@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestAutomaition
 {
+    //TODO: there are no logics in DBLogics
     public class DBLogics
     {
         public DBActions DBActions { get; set; }

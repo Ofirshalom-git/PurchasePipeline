@@ -21,18 +21,20 @@ namespace Common
         private string RandomizeStoreId()
         {
             String storeId = "";
+            //TODO: extract to method (26-28, 30-32, 34-37 it's repetitive)
 
             Random storeTypeRnd = new Random();
             int storeType = (int)storeTypeRnd.Next(65, 70);
             storeId += Char.ConvertFromUtf32(storeType);
-
+            //TODO: why do you create another random?
             Random storeActivityDaysRnd = new Random();
             int storeActivityDays = (int)storeActivityDaysRnd.Next(65, 68);
             storeId += Char.ConvertFromUtf32(storeActivityDays);
-
+            //TODO: why do you create another random?
             Random storeNumericIdRnd = new Random();
             int storeNumericId = (int)storeNumericIdRnd.Next(10000, 99999);
             storeId += storeNumericId.ToString();
+
 
             return storeId.ToString();
         }
@@ -57,6 +59,7 @@ namespace Common
             Random yearRnd = new Random();
             int year = (int)yearRnd.Next(1000, DateTime.Now.Year - 1);
 
+            //TODO: why do you create another random?
             Random monthRnd = new Random();
             int month = (int)yearRnd.Next(1, 12);
 

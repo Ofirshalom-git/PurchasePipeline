@@ -14,23 +14,26 @@ namespace DAL
 
         public DBActions()
         {
+             //TODO: why do you put the ctor in a diff method?
             ConnectToDB();
         }
 
         private void ConnectToDB()
         {
+            //TODO: add names to config
             string server = "localhost";
             string database = "hafifot";
             string uid = "root";
             string password = "root";
             string connetionString;
             connetionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
-
+            //TODO: add "this" to Conncetion
             Connection = new SqlConnection(connetionString);            
         }
-
+          //TODO: why do you need "DB" in the name of the moethod? it's DB class.. 
         public List<PurchaseDBBody> GetAllDBPurchases()
         {
+          //TODO: add "this" to Conncetion
             Connection.Open();
 
             SqlCommand command;
@@ -38,8 +41,9 @@ namespace DAL
             String sql, Output = "";
 
             List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
-
+            // TODO: choose better name , maybe "sqlQuery". why don't you assign value on declaration?
             sql = "SELECT * FROM hafifot";
+            // TODO: why did you first declated and just now you initialize it?
             command = new SqlCommand(sql, Connection);
 
             dataReader = command.ExecuteReader();
@@ -54,6 +58,7 @@ namespace DAL
             //or 2
             //PurchaseDBBody purchase = new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), DateTime.Parse(dataReader.GetValue(5).ToString()), DateTime.Parse(dataReader.GetValue(6).ToString()), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString());
             
+            // TODO: move in to a separate method
             dataReader.Close();
             command.Dispose();
             Connection.Close();
@@ -67,6 +72,7 @@ namespace DAL
 
             SqlCommand command;
             SqlDataReader dataReader;
+            // TODO: when you declare a String variable it is empty string by default
             String sql, Output = "";
 
             List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
@@ -75,7 +81,7 @@ namespace DAL
             command = new SqlCommand(sql, Connection);
 
             dataReader = command.ExecuteReader();
-            //1
+            
             while (dataReader.Read())
             {
                 purchases.Add(new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), DateTime.Parse(dataReader.GetValue(5).ToString()), DateTime.Parse(dataReader.GetValue(6).ToString()), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString()));
