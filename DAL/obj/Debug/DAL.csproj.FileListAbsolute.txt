@@ -1,0 +1,15 @@
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\DAL.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\DAL.pdb
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\BouncyCastle.Crypto.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Common.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Google.Protobuf.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\MySql.Data.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Renci.SshNet.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Ubiety.Dns.Core.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Common.pdb
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Google.Protobuf.xml
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\MySql.Data.xml
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\Debug\Renci.SshNet.xml
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.pdb

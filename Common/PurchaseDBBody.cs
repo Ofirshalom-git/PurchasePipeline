@@ -20,7 +20,7 @@ namespace Common
         public double TotalPrice { get; set; }
         public int Installments { get; set; }
         public double PricePerInstallment { get; set; }
-        public bool IsValid { get; set; }
+        public int IsValid { get; set; }
         public string WhyInvalid { get; set; }
         
         public PurchaseDBBody()
@@ -28,7 +28,7 @@ namespace Common
 
         }
 
-        public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard, string purchaseDate, string insertionDate, double totalPrice, int installments, double pricePerInstallment, bool isValid, string whyInvalid)
+        public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard, string purchaseDate, string insertionDate, double totalPrice, int installments, double pricePerInstallment, int isValid, string whyInvalid)
         {
             Id = purchaseID;
             StoreType = storeType;

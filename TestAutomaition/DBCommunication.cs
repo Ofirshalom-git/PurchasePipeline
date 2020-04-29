@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 
 namespace TestAutomaition
 {
-    public class DBLogics
+    public class DBCommunication
     {
         public DBActions DBActions { get; set; }
 
-        public DBLogics()
+        public DBCommunication()
         {
             DBActions = new DBActions();
         }
         
         public void InsertPurchase(PurchaseDBBody purchase) =>
-            DBActions.InsertPurchaseToDB(purchase);
+            DBActions.InsertPurchase(purchase);
         
         public List<PurchaseDBBody> GetAllPurchases() =>
-            DBActions.GetAllDBPurchases();
+            DBActions.GetAllPurchases();
 
         public List<PurchaseDBBody> GetPurchaseById(string id) =>
-            DBActions.GetPurchaseFromDBById(id);
+            DBActions.GetPurchaseById(id);
 
-        public void deleteAllFromDB() =>
-            DBActions.deleteAllFromDB();
+        public void deleteAllPurchases() =>
+            DBActions.DeleteAllPurchases();
 
     }
 }

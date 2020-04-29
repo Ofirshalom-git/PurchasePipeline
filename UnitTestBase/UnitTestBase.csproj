@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="CSVTests.cs" />
     <Compile Include="DBInsertionTest.cs" />
-    <Compile Include="DynamicObjectBase.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="PerformenceSurvivabilityTests.cs" />
     <Compile Include="TestCasesProvider.cs" />
@@ -83,6 +82,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

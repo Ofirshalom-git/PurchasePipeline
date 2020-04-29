@@ -1,0 +1,5 @@
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\Common\bin\Debug\Common.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\Common\bin\Debug\Common.pdb
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\Common\obj\Debug\Common.dll
+c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\Common\obj\Debug\Common.pdb

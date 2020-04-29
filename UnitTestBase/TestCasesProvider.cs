@@ -11,7 +11,7 @@ namespace UnitTestBase
     public static class TestCasesProvider
     {
         //1
-        public static List<List<PurchaseDBBody>> SendValidCSVFile(RabbitMQLogics rabbitMOLogics, DBLogics dbLogics, int numOfLines)
+        public static List<List<PurchaseDBBody>> SendValidCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -32,7 +32,7 @@ namespace UnitTestBase
         }
 
         //2
-        public static List<List<PurchaseDBBody>> SendInvalidCSVLineStructute(RabbitMQLogics rabbitMOLogics, DBLogics dbLogics, dynamic testCase)
+        public static List<List<PurchaseDBBody>> SendInvalidCSVLineStructute(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -44,7 +44,7 @@ namespace UnitTestBase
 
             String CSVTextBody = "";
 
-            if (testCase == ';')
+            if (testCase == ";")
             {
                 var csvLine = rabbitMOLogics.ConvertCSVLineToText(randomizedLine);
 
@@ -58,7 +58,7 @@ namespace UnitTestBase
                 randomizedLineText += $"{csvLine},100";
             }
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < numOfLines; i++)
             {
                 CSVTextBody += $"{randomizedLineText}{Environment.NewLine}";
             }
@@ -76,7 +76,7 @@ namespace UnitTestBase
         }
 
         //3
-        public static List<List<PurchaseDBBody>> SendValidCSVFile(int numOfLines, RabbitMQLogics rabbitMOLogics, DBLogics dbLogics)
+        public static List<List<PurchaseDBBody>> SendValidCSVFile(int numOfLines, RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 

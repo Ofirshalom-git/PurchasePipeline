@@ -15,7 +15,7 @@ namespace UnitTestBase
         [TestMethod]        
         public void ValidCSVInsertionSucceedTest1()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(RabbitMQLogics, DBLogics, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(RabbitMQLogics, DBCommunication, 1);
             for(var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
@@ -24,7 +24,7 @@ namespace UnitTestBase
 
         public void ValidCSVInsertionSucceedTest2(int numOfLines, RabbitMQLogics rabbitMOLogics)
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(RabbitMQLogics, DBLogics, 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(RabbitMQLogics, DBCommunication, 3);
             for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
@@ -34,7 +34,7 @@ namespace UnitTestBase
         [TestMethod]
         public void InvalidCSVLineStructuteInsertionFailsTest1(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBLogics, ';');
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 1);
             for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
@@ -44,7 +44,27 @@ namespace UnitTestBase
         [TestMethod]
         public void InvalidCSVLineStructuteInsertionFailsTest2(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBLogics, "invalidNumOfFields");
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 1);
+            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            {
+                expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
+            }
+        }
+
+        [TestMethod]
+        public void InvalidCSVLineStructuteInsertionFailsTest3(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 3);
+            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            {
+                expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
+            }
+        }
+
+        [TestMethod]
+        public void InvalidCSVLineStructuteInsertionFailsTest4(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 3);
             for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
@@ -54,37 +74,36 @@ namespace UnitTestBase
 
 
 
+        //[TestMethod]
+        //public void InvalidDateFormatCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        //{
+        //    CSVFile file = new CSVFile(list);
+        //    RabbitMQLogics.SendCSVToRabbitMQ(file);
+        //    DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+        //}
 
-        [TestMethod]
-        public void InvalidDateFormatCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
-        {
-            CSVFile file = new CSVFile(list);
-            RabbitMQLogics.SendCSVToRabbitMQ(file);
-            DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
-        }
+        //[TestMethod]
+        //public void InvalidStoreIdCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        //{
+        //    CSVFile file = new CSVFile(list);
+        //    RabbitMQLogics.SendCSVToRabbitMQ(file);
+        //    DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+        //}
 
-        [TestMethod]
-        public void InvalidStoreIdCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
-        {
-            CSVFile file = new CSVFile(list);
-            RabbitMQLogics.SendCSVToRabbitMQ(file);
-            DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
-        }
+        //[TestMethod]
+        //public void NonNumericPriceCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        //{
+        //    CSVFile file = new CSVFile(list);
+        //    RabbitMQLogics.SendCSVToRabbitMQ(file);
+        //    DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+        //}
 
-        [TestMethod]
-        public void NonNumericPriceCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
-        {
-            CSVFile file = new CSVFile(list);
-            RabbitMQLogics.SendCSVToRabbitMQ(file);
-            DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
-        }
-
-        [TestMethod]
-        public void NonFULLStringInstallmentsCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
-        {
-            CSVFile file = new CSVFile(list);
-            RabbitMQLogics.SendCSVToRabbitMQ(file);
-            DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
-        }
+        //[TestMethod]
+        //public void NonFULLStringInstallmentsCSVLineInsertionFailsTest(List<CSVPurchaseLine> list, List<PurchaseDBBody> expectedList)
+        //{
+        //    CSVFile file = new CSVFile(list);
+        //    RabbitMQLogics.SendCSVToRabbitMQ(file);
+        //    DBLogics.GetAllPurchases().Should().BeSameAs(expectedList);
+        //}
     }
 }

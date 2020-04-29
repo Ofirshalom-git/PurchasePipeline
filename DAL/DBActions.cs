@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Common;
+using System.Configuration;
 
 namespace DAL
 {
@@ -19,81 +20,73 @@ namespace DAL
 
         private void ConnectToDB()
         {
-            string server = "localhost";
-            string database = "hafifot";
-            string uid = "root";
-            string password = "root";
+            string server = ConfigurationManager.AppSettings["server"];
+            string database = ConfigurationManager.AppSettings["database"];
+            string uid = ConfigurationManager.AppSettings["uid"];
+            string password = ConfigurationManager.AppSettings["password"];
             string connetionString;
             connetionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
 
-            Connection = new SqlConnection(connetionString);            
+            this.Connection = new SqlConnection(connetionString);            
         }
 
-        public List<PurchaseDBBody> GetAllDBPurchases()
+        public List<PurchaseDBBody> GetAllPurchases()
+        {
+            this.Connection.Open();
+
+            SqlCommand command;
+            SqlDataReader dataReader;
+
+            List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
+
+            var sqlQuery = "SELECT * FROM hafifot";
+            command = new SqlCommand(sqlQuery, Connection);
+
+            dataReader = command.ExecuteReader();
+      
+            while (dataReader.Read())
+            {
+                purchases.Add(new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), dataReader.GetValue(5).ToString(), dataReader.GetValue(6).ToString(), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), int.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString()));
+                //Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "/n";    
+            }
+
+            EndCommand(dataReader, command);
+
+            return purchases;
+        }
+
+        public List<PurchaseDBBody> GetPurchaseById(string id)
         {
             Connection.Open();
 
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
 
             List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
 
-            sql = "SELECT * FROM hafifot";
-            command = new SqlCommand(sql, Connection);
+            var sqlQuery = $"SELECT * FROM hafifot WHERE id={id}";
+            command = new SqlCommand(sqlQuery, Connection);
 
             dataReader = command.ExecuteReader();
-            //1
             while (dataReader.Read())
             {
-                purchases.Add(new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), dataReader.GetValue(5).ToString(), dataReader.GetValue(6).ToString(), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString()));
+                purchases.Add(new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), dataReader.GetValue(5).ToString(), dataReader.GetValue(6).ToString(), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), int.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString()));
                 //Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "/n";    
             }
 
-            //messageBox.Show(Output);
-            //or 2
-            //PurchaseDBBody purchase = new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), DateTime.Parse(dataReader.GetValue(5).ToString()), DateTime.Parse(dataReader.GetValue(6).ToString()), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString());
-            
-            dataReader.Close();
-            command.Dispose();
-            Connection.Close();
+            EndCommand(dataReader, command);
 
             return purchases;
         }
 
-        public List<PurchaseDBBody> GetPurchaseFromDBById(string id)
+        private void EndCommand(SqlDataReader dataReader, SqlCommand command)
         {
-            Connection.Open();
-
-            SqlCommand command;
-            SqlDataReader dataReader;
-            String sql, Output = "";
-
-            List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
-
-            sql = $"SELECT * FROM hafifot WHERE id={id}";
-            command = new SqlCommand(sql, Connection);
-
-            dataReader = command.ExecuteReader();
-            //1
-            while (dataReader.Read())
-            {
-                purchases.Add(new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), dataReader.GetValue(5).ToString(), dataReader.GetValue(6).ToString(), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString()));
-                //Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "/n";    
-            }
-
-            //messageBox.Show(Output);
-            //or 2
-            //PurchaseDBBody purchase = new PurchaseDBBody(dataReader.GetValue(0).ToString(), dataReader.GetValue(1).ToString(), dataReader.GetValue(2).ToString(), dataReader.GetValue(3).ToString(), dataReader.GetValue(4).ToString(), DateTime.Parse(dataReader.GetValue(5).ToString()), DateTime.Parse(dataReader.GetValue(6).ToString()), double.Parse(dataReader.GetValue(7).ToString()), int.Parse(dataReader.GetValue(8).ToString()), int.Parse(dataReader.GetValue(9).ToString()), bool.Parse(dataReader.GetValue(10).ToString()), dataReader.GetValue(11).ToString());
-
             dataReader.Close();
             command.Dispose();
             Connection.Close();
-
-            return purchases;
         }
 
-        public void InsertPurchaseToDB(PurchaseDBBody purchase)
+        public void InsertPurchase(PurchaseDBBody purchase)
         {
             Connection.Open();
             SqlCommand command;
@@ -111,7 +104,7 @@ namespace DAL
             Connection.Close();
         }
 
-        public void deleteAllFromDB()
+        public void DeleteAllPurchases()
         {
             try
             {

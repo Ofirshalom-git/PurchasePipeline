@@ -22,19 +22,17 @@ namespace Common
         {
             String storeId = "";
 
-            Random storeTypeRnd = new Random();
-            int storeType = (int)storeTypeRnd.Next(65, 70);
+            Random rnd = new Random();
+            int storeType = (int)rnd.Next(65, 70);
             storeId += Char.ConvertFromUtf32(storeType);
 
-            Random storeActivityDaysRnd = new Random();
-            int storeActivityDays = (int)storeActivityDaysRnd.Next(65, 68);
+            int storeActivityDays = (int)rnd.Next(65, 68);
             storeId += Char.ConvertFromUtf32(storeActivityDays);
 
-            Random storeNumericIdRnd = new Random();
-            int storeNumericId = (int)storeNumericIdRnd.Next(10000, 99999);
+            int storeNumericId = (int)rnd.Next(10000, 99999);
             storeId += storeNumericId.ToString();
 
-            return storeId.ToString();
+            return storeId;
         }
 
         private string RandomizeCreditCard()
