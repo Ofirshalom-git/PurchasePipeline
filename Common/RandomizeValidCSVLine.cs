@@ -18,7 +18,7 @@ namespace Common
         public CSVPurchaseLine RandomizeLine() =>
             new CSVPurchaseLine(RandomizeStoreId(), RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
         
-        private string RandomizeStoreId()
+        public string RandomizeStoreId()
         {
             String storeId = "";
 
@@ -35,7 +35,7 @@ namespace Common
             return storeId;
         }
 
-        private string RandomizeCreditCard()
+        public string RandomizeCreditCard()
         {
             String CredirCard = "";
             Random numberUnit = new Random();
@@ -48,7 +48,7 @@ namespace Common
             return CredirCard.ToString();
         }
 
-        private string RandomizePurchaseDate()
+        public string RandomizePurchaseDate()
         {
             String purchaseDate = "";
 
@@ -66,7 +66,7 @@ namespace Common
             return purchaseDate.ToString();
         }
 
-        private string RandomizePayedPrice()
+        public string RandomizePayedPrice()
         {
             String payedPrice = "";
 
@@ -81,7 +81,7 @@ namespace Common
             return payedPrice;
         }
 
-        private string RandomizeInstallments()
+        public string RandomizeInstallments()
         {
             String installments = "";
 
