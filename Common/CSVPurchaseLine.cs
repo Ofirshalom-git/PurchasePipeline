@@ -177,6 +177,16 @@ namespace Common
             return false;
         }
 
+        public int ExpectedIsValidNumber()
+        {
+            if(IsValidAsPurchase())
+            {
+                return 1;
+            }
+
+            return 0;
+        }
+
         private bool IsValidCreditCard()
         {
             if(CardID.Length == 16)
@@ -254,7 +264,7 @@ namespace Common
         }
 
         public PurchaseDBBody ExpectedPurchaseDBBody() =>
-            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), PayedPrice, ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), IsValidAsPurchase(), WhyInvalidPurchase());
+            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), PayedPrice, ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidPurchase());
         
         private string ExpectedStoreType()
         {

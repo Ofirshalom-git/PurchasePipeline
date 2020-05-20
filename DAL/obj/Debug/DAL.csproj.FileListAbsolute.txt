@@ -13,3 +13,4 @@ c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\bin\De
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.dll
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.pdb
+C:\Users\Shalom\Documents\Visual Studio 2015\Projects\TestAutomaition\DAL\bin\Debug\DAL.dll.config

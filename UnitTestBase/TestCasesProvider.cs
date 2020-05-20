@@ -230,7 +230,7 @@ namespace UnitTestBase
 
             for (var i = 0; i < numOfLines; i++)
             {
-                CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidInstallmentsLine());
+                CSVLines.Add(CsvInvalidLineRandomizer.GetNegitiveInstallmentsLine());
             }
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));

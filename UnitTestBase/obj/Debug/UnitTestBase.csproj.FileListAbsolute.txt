@@ -19,3 +19,4 @@ c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBa
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBase\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBase\obj\Debug\UnitTestBase.dll
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBase\obj\Debug\UnitTestBase.pdb
+C:\Users\Shalom\Documents\Visual Studio 2015\Projects\TestAutomaition\UnitTestBase\bin\Debug\UnitTestBase.dll.config
