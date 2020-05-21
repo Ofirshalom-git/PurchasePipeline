@@ -9,10 +9,18 @@ namespace Common
     public class RandomizeValidCSVLine
     {
         public string Price { get; set; }
+        private static Random _numberUnit { get; set; }
+        private static Random _yearRnd { get; set; }
+        private static Random _monthRnd { get; set; }
+        private static Random _dayRnd { get; set; }
 
         public RandomizeValidCSVLine()
         {
             Price = RandomizePayedPrice();
+            _numberUnit = new Random();
+            _yearRnd = new Random();
+            _monthRnd = new Random();
+            _dayRnd = new Random();
         }
         
         public CSVPurchaseLine RandomizeLine() =>
@@ -38,11 +46,10 @@ namespace Common
         public string RandomizeCreditCard()
         {
             String CredirCard = "";
-            Random numberUnit = new Random();
 
             for(var i =0; i < 16; i++)
             {
-                CredirCard += numberUnit.Next(0, 9);
+                CredirCard += _numberUnit.Next(0, 9);
             }
 
             return CredirCard.ToString();
@@ -52,14 +59,11 @@ namespace Common
         {
             String purchaseDate = "";
 
-            Random yearRnd = new Random();
-            int year = (int)yearRnd.Next(1000, DateTime.Now.Year - 1);
+            int year = (int)_yearRnd.Next(1000, DateTime.Now.Year - 1);
 
-            Random monthRnd = new Random();
-            int month = (int)yearRnd.Next(1, 12);
+            int month = (int)_monthRnd.Next(1, 12);
 
-            Random dayRnd = new Random();
-            int day = (int)yearRnd.Next(1, 28);
+            int day = (int)_dayRnd.Next(1, 28);
 
             purchaseDate += $"{year}-{month}-{day}";
 

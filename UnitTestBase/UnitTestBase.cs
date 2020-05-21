@@ -20,12 +20,7 @@ namespace UnitTestBase
             DBCommunication.deleteAllPurchases();
         }
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-
-        }
-
+        
         //[TestCleanup]
         //public void CleanUp()
         //{

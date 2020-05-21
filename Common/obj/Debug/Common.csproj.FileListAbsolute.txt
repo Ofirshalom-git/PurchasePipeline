@@ -8,3 +8,4 @@ C:\Users\Miki\Source\Repos\PurchasePipeline\Common\bin\Debug\Common.pdb
 C:\Users\Miki\Source\Repos\PurchasePipeline\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Miki\Source\Repos\PurchasePipeline\Common\obj\Debug\Common.dll
 C:\Users\Miki\Source\Repos\PurchasePipeline\Common\obj\Debug\Common.pdb
+C:\Users\Miki\source\repos\PurchasePipeline\Common\obj\Debug\Common.csprojAssemblyReference.cache

@@ -24,7 +24,7 @@ namespace UnitTestBase
         public void ValidCSVInsertionSucceedTest2()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendValidCSVFile(RabbitMQLogics, DBCommunication, 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -46,7 +46,7 @@ namespace UnitTestBase
         public void InvalidCSVLineStructuteInsertionFailsTest2()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 1);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -56,7 +56,7 @@ namespace UnitTestBase
         public void InvalidCSVLineStructuteInsertionFailsTest3()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -66,7 +66,7 @@ namespace UnitTestBase
         public void InvalidCSVLineStructuteInsertionFailsTest4()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -76,7 +76,7 @@ namespace UnitTestBase
         public void InvalidDateFormatCSVLineInsertionFailsTestDot()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "dot", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -86,7 +86,7 @@ namespace UnitTestBase
         public void InvalidDateFormatCSVLineInsertionFailsTestOpposite()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "opposite", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -96,7 +96,7 @@ namespace UnitTestBase
         public void InvalidDateFormatCSVLineInsertionFailsTestMonth()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "month", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
@@ -106,7 +106,7 @@ namespace UnitTestBase
         public void InvalidStoreIdLettersCSVLineInsertionFailsTest()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "letters", 3);
-            for (var i = 1; i < expectedAndExistingPurchases[0].Count; i++)
+            for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
