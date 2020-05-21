@@ -81,11 +81,19 @@ namespace Common
 
         private bool IsValidInstallments()
         {
-            if (Payments == "" || Payments == "FULL" || (Payments >= 1 && Payments < 10 * PayedPrice))
+            double PaymentsValue;
+            if (double.TryParse(Payments, out PaymentsValue))
+            {
+                if (PaymentsValue >= 1 && PaymentsValue < 10 * double.Parse(PayedPrice))
+                {
+                    return true;
+                }
+            }
+            else if (Payments == "" || Payments == "FULL" )
             {
                 return true;
             }
-
+            
             return false;
         }
 

@@ -28,7 +28,9 @@ namespace Common
 
         }
 
-        public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard, string purchaseDate, string insertionDate, double totalPrice, int installments, double pricePerInstallment, int isValid, string whyInvalid)
+        public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard,
+            string purchaseDate, string insertionDate, double totalPrice, int installments,
+            double pricePerInstallment, int isValid, string whyInvalid)
         {
             Id = purchaseID;
             StoreType = storeType;

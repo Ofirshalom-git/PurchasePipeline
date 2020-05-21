@@ -49,15 +49,15 @@ namespace TestAutomaition
 
         public string ConvertCSVLineToText(CSVPurchaseLine purchase)
         {
-            if(purchase.Payments == "" || purchase.Payments == "FULL")
+            double PaymentValue;
+            if (double.TryParse(purchase.Payments, out PaymentValue))
+            {
+                return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{double.Parse(purchase.Payments)}";
+            }
+            else
             {
                 return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice}";
             }
-
-            else
-            {
-                return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{int.Parse(purchase.Payments)}";
-            }            
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Common
             String negativeInstallments = "";
 
             Random installmentsRnd = new Random();
-            int installments = (int)installmentsRnd.Next(-1, -5000);
+            int installments = (int)installmentsRnd.Next(-5000, -1);
 
             negativeInstallments += installments;
 

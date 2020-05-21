@@ -9,25 +9,15 @@ namespace UnitTestBase
     [TestClass]
     public class UnitTestBase
     {
-        protected DBCommunication DBCommunication;
-        protected RabbitMQLogics RabbitMQLogics;
+        protected DBCommunication DBCommunication = new DBCommunication();
+        protected RabbitMQLogics RabbitMQLogics = new RabbitMQLogics();
 
         [TestInitialize]
         public void Initialize()
         {
-            //var startInfo = new ProcessStartInfo
-            //{
-            //    FileName = "filePath";
-            //    WorkingDirectory = @"file path";
-            //    Arguments = "/c java -jar PurchasesPipeline_1.0.1.jar";
-            //};
-
-            //_process = new Process{StartInfo = startInfo};
-            //_process.Start();
-
-            DBCommunication = new DBCommunication();
-            RabbitMQLogics = new RabbitMQLogics();
-            DBCommunication.deleteAllPurchases();            
+            //string commad = "/c java -jar PurchasesPipeline_1.0.1.jar";
+            //System.Diagnostics.Process.Start("CMD.exe", commad);
+            DBCommunication.deleteAllPurchases();
         }
 
         [TestMethod]
@@ -36,10 +26,10 @@ namespace UnitTestBase
 
         }
 
-        [TestCleanup]
-        public void CleanUp()
-        {
-            //_process.CloseMainWindow();
-        }
+        //[TestCleanup]
+        //public void CleanUp()
+        //{
+        //    this.DBCommunication.DBActions
+        //}
     }
 }

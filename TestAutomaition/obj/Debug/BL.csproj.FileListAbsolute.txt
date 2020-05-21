@@ -12,3 +12,28 @@ c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\TestAutoma
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\TestAutomaition\obj\Debug\BL.csprojResolveAssemblyReference.cache
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\TestAutomaition\obj\Debug\TestAutomaition.dll
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\TestAutomaition\obj\Debug\TestAutomaition.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\TestAutomaition.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\TestAutomaition.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Common.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\DAL.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Common.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\DAL.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\DAL.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\RabbitMQ.Client.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\RabbitMQ.Client.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\obj\Debug\BL.csprojAssemblyReference.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\obj\Debug\BL.csproj.CopyComplete
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\obj\Debug\TestAutomaition.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\obj\Debug\TestAutomaition.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\MySql.Data.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Google.Protobuf.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Renci.SshNet.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\MySql.Data.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Google.Protobuf.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\TestAutomaition\bin\Debug\Renci.SshNet.xml

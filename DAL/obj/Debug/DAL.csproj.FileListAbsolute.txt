@@ -14,3 +14,21 @@ c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\De
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.dll
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\DAL\obj\Debug\DAL.pdb
 C:\Users\Shalom\Documents\Visual Studio 2015\Projects\TestAutomaition\DAL\bin\Debug\DAL.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\DAL.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\DAL.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\DAL.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Common.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Google.Protobuf.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\MySql.Data.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Renci.SshNet.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Common.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Google.Protobuf.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\MySql.Data.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\bin\Debug\Renci.SshNet.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\obj\Debug\DAL.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\DAL\obj\Debug\DAL.pdb

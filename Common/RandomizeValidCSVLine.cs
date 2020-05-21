@@ -83,28 +83,18 @@ namespace Common
 
         public string RandomizeInstallments()
         {
-            String installments = "";
-
             Random intOrStringRnd = new Random();
             int intOrString = (int)intOrStringRnd.Next(0, 9);
 
             switch (intOrString)
             {
                 case 0:
-                    installments += "FULL";
-                    break;
-
+                    return "FULL";
                 case 1:
-                    installments += "";
-                    break;
-
+                    return "";
                 default:
-                    Random installmentsRnd = new Random();
-                    installments += (int)installmentsRnd.Next(0, int.Parse(Price) * 10);
-                    break;
+                    return new Random().Next(0, (int)Convert.ToDouble(Price) * 10).ToString();
             }
-
-            return installments;            
         }
     }
 }

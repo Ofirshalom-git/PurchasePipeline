@@ -20,3 +20,36 @@ c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBa
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBase\obj\Debug\UnitTestBase.dll
 c:\users\shalom\documents\visual studio 2015\Projects\TestAutomaition\UnitTestBase\obj\Debug\UnitTestBase.pdb
 C:\Users\Shalom\Documents\Visual Studio 2015\Projects\TestAutomaition\UnitTestBase\bin\Debug\UnitTestBase.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\UnitTestBase.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\UnitTestBase.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\UnitTestBase.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Common.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\FluentAssertions.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\System.ValueTuple.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\TestAutomaition.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\DAL.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Common.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\TestAutomaition.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\FluentAssertions.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\FluentAssertions.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\System.ValueTuple.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\DAL.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\DAL.dll.config
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\RabbitMQ.Client.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\RabbitMQ.Client.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\obj\Debug\UnitTestBase.csprojAssemblyReference.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\obj\Debug\UnitTestBase.csproj.CoreCompileInputs.cache
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\obj\Debug\UnitTestBase.csproj.CopyComplete
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\obj\Debug\UnitTestBase.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\obj\Debug\UnitTestBase.pdb
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\MySql.Data.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Google.Protobuf.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Renci.SshNet.dll
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\MySql.Data.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Google.Protobuf.xml
+C:\Users\Miki\Source\Repos\PurchasePipeline\UnitTestBase\bin\Debug\Renci.SshNet.xml
