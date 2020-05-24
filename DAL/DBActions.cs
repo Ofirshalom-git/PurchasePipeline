@@ -48,8 +48,8 @@ namespace DAL
                     dataReader.GetValue(2).ToString(),
                     dataReader.GetValue(3).ToString(),
                     dataReader.GetValue(4).ToString(),
-                    dataReader.GetValue(5).ToString(),
-                    dataReader.GetValue(6).ToString(),
+                    GetFormatedDate(dataReader.GetValue(5).ToString()), //date
+                    GetFormatedDate(dataReader.GetValue(6).ToString()), //date
                     double.Parse(dataReader.GetValue(7).ToString()),
                     int.Parse(dataReader.GetValue(8).ToString()),
                     double.Parse(dataReader.GetValue(9).ToString()),
@@ -61,6 +61,24 @@ namespace DAL
             EndCommand(dataReader, command);
 
             return purchases;
+        }
+
+        private string GetFormatedDate(string unformatedDate)
+        {
+            String formatedDate = "";
+
+            formatedDate += unformatedDate[6];
+            formatedDate += unformatedDate[7];
+            formatedDate += unformatedDate[8];
+            formatedDate += unformatedDate[9];
+            formatedDate += "-";
+            formatedDate += unformatedDate[1];
+            formatedDate += unformatedDate[2];
+            formatedDate += "-";
+            formatedDate += unformatedDate[3];
+            formatedDate += unformatedDate[4];
+
+            return formatedDate;
         }
 
         public List<PurchaseDBBody> GetPurchaseById(string id)

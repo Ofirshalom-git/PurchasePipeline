@@ -84,10 +84,7 @@ namespace Common
             double PaymentsValue;
             if (double.TryParse(Payments, out PaymentsValue))
             {
-                if (PaymentsValue >= 1 && PaymentsValue < 10 * double.Parse(PayedPrice))
-                {
-                    return true;
-                }
+                return (PaymentsValue >= 1 && PaymentsValue < 10 * double.Parse(PayedPrice));
             }
             else if (Payments == "" || Payments == "FULL" )
             {
@@ -99,12 +96,12 @@ namespace Common
 
         private bool IsValidPurchaseDateFormat()
         {
-            if(PurchaseDate.Length == 10 && (PurchaseDate[5] == '-' && PurchaseDate[8] == '-'))
+            if(PurchaseDate.Length == 10 && (PurchaseDate[4] == '-' && PurchaseDate[7] == '-'))
             {
                 int num;
                 for(var i = 0; i < 10; i++)
                 {
-                    if(i != 5 && i != 8)
+                    if(i != 4 && i != 7)
                     {
                         if(!int.TryParse(PurchaseDate[i].ToString(), out num))
                         {
@@ -113,7 +110,7 @@ namespace Common
                     }
                 }
 
-                DateTime newDate = DateTime.ParseExact(PurchaseDate, "YYYY-MM-dd", CultureInfo.InvariantCulture);
+                DateTime newDate = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 if (newDate.Year > DateTime.Today.Year)
                 {                    
@@ -216,7 +213,7 @@ namespace Common
 
         private bool IsBoughtOnActivityDay()
         {
-            DateTime date = DateTime.ParseExact(PurchaseDate, "YYYY-MM-dd", CultureInfo.InvariantCulture);
+            DateTime date = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
             switch (StoreID[2])
             {
@@ -268,40 +265,42 @@ namespace Common
                 return "Invalid purchase date later than insertion";
             }
 
-            return "couldn't find a reason";
+            return "null";
         }
 
         public PurchaseDBBody ExpectedPurchaseDBBody() =>
-            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), PayedPrice, ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidPurchase());
+            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidPurchase());
         
         private string ExpectedStoreType()
         {
-            switch (StoreID[0])
-            {
-                case 'A':
-                    return "clothes";
-                    break;
+            //switch (StoreID[0])
+            //{
+            //    case 'A':
+            //        return "clothes";
+            //        break;
 
-                case 'B':
-                    return "food";
-                    break;
+            //    case 'B':
+            //        return "food";
+            //        break;
 
-                case 'C':
-                    return "matirials";
-                    break;
+            //    case 'C':
+            //        return "matirials";
+            //        break;
 
-                case 'D':
-                    return "medical";
-                    break;
+            //    case 'D':
+            //        return "medical";
+            //        break;
 
-                case 'E':
-                    return "electronics";
-                    break;
+            //    case 'E':
+            //        return "electronics";
+            //        break;
 
-                case 'F':
-                    return "other/ unknown";
-                    break;
-            }
+            //    case 'F':
+            //        return "other/ unknown";
+            //        break;
+            //}
+
+            return StoreID[0].ToString();
 
             return "non";
         }
@@ -320,26 +319,28 @@ namespace Common
 
         private string ExpectedActivityDays()
         {
-            switch (StoreID[1])
-            {
-                case 'A':
-                    return "all week";
-                    break;
+            //switch (StoreID[1])
+            //{
+            //    case 'A':
+            //        return "all week";
+            //        break;
 
-                case 'B':
-                    return "sunday to friday";
-                    break;
+            //    case 'B':
+            //        return "sunday to friday";
+            //        break;
 
-                case 'C':
-                    return "sunday to thursday";
-                    break;
+            //    case 'C':
+            //        return "sunday to thursday";
+            //        break;
 
-                case 'D':
-                    return "unknown/ other";
-                    break;
-            }
+            //    case 'D':
+            //        return "unknown/ other";
+            //        break;
+            //}
 
-            return "non";
+            return StoreID[1].ToString();
+
+            return "none";
         }
 
         private string GetStringInsertionDate()
@@ -348,9 +349,9 @@ namespace Common
 
             date += DateTime.Today.Year.ToString();
             date += "-";
-            date += DateTime.Today.Month.ToString();
+            date += DateTime.Today.Month.ToString("D2");
             date += "-";
-            date += DateTime.Today.Day.ToString();
+            date += DateTime.Today.Day.ToString("D2");
 
             return date;
         }
@@ -361,15 +362,12 @@ namespace Common
             {
                 return 1;
             }
-
-            else
-            {
-                return Payments;
-            }
+            
+            return int.Parse(Payments);
         }
 
         private double ExpectedPricePerInstallment() =>
-            PayedPrice/Payments;
+            double.Parse(PayedPrice)/ExpectedNumOfInstallments();
         
     }
 }

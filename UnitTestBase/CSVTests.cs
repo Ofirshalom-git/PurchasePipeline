@@ -36,8 +36,6 @@ namespace UnitTestBase
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 1);
             for (var i = 0; i < expectedAndExistingPurchases[0].Count; i++)
             {
-                Console.WriteLine(expectedAndExistingPurchases[0].Count);
-                Console.WriteLine(expectedAndExistingPurchases[1].Count);
                 expectedAndExistingPurchases[0][i].Should().BeSameAs(expectedAndExistingPurchases[1][i]);
             }
         }

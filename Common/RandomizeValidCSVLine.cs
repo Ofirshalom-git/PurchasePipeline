@@ -45,29 +45,27 @@ namespace Common
 
         public string RandomizeCreditCard()
         {
-            String CredirCard = "";
+            //String CredirCard = "";
 
-            for(var i =0; i < 16; i++)
-            {
-                CredirCard += _numberUnit.Next(0, 9);
-            }
+            //for(var i =0; i < 16; i++)
+            //{
+            //    CredirCard += _numberUnit.Next(0, 9);
+            //}
 
-            return CredirCard.ToString();
+            //return CredirCard.ToString();
+
+            return "4557446145890236";
         }
 
         public string RandomizePurchaseDate()
         {
-            String purchaseDate = "";
-
             int year = (int)_yearRnd.Next(1000, DateTime.Now.Year - 1);
 
             int month = (int)_monthRnd.Next(1, 12);
 
             int day = (int)_dayRnd.Next(1, 28);
 
-            purchaseDate += $"{year}-{month}-{day}";
-
-            return purchaseDate.ToString();
+            return $"{year}-{month:D2}-{day:D2}";
         }
 
         public string RandomizePayedPrice()
