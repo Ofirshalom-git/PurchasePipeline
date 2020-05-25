@@ -10,6 +10,31 @@ namespace UnitTestBase
 {
     public static class TestCasesProvider
     {
+        public static bool DBPurchacesAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        {
+            if(expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            {
+                return true;
+            }
+        
+            if(expectedAndExistingPurchaces[0].Count == 1 && expectedAndExistingPurchaces[1].Count == 1)
+            {
+                return (expectedAndExistingPurchaces[0][0].StoreType == expectedAndExistingPurchaces[1][0].StoreType
+                    && expectedAndExistingPurchaces[0][0].ActivityDays == expectedAndExistingPurchaces[1][0].ActivityDays
+                    && expectedAndExistingPurchaces[0][0].StoreID == expectedAndExistingPurchaces[1][0].StoreID
+                    && expectedAndExistingPurchaces[0][0].CreditCard == expectedAndExistingPurchaces[1][0].CreditCard
+                    && expectedAndExistingPurchaces[0][0].PurchaseDate == expectedAndExistingPurchaces[1][0].PurchaseDate
+                    && expectedAndExistingPurchaces[0][0].InsertionDate == expectedAndExistingPurchaces[1][0].InsertionDate
+                    && expectedAndExistingPurchaces[0][0].TotalPrice == expectedAndExistingPurchaces[1][0].TotalPrice
+                    && expectedAndExistingPurchaces[0][0].Installments == expectedAndExistingPurchaces[1][0].Installments
+                    && expectedAndExistingPurchaces[0][0].PricePerInstallment == expectedAndExistingPurchaces[1][0].PricePerInstallment
+                    && expectedAndExistingPurchaces[0][0].IsValid == expectedAndExistingPurchaces[1][0].IsValid
+                    && expectedAndExistingPurchaces[0][0].WhyInvalid == expectedAndExistingPurchaces[1][0].WhyInvalid);
+            }
+
+            return false;
+        }
+
         //1
         public static List<List<PurchaseDBBody>> SendValidCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {

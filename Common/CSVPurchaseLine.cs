@@ -14,6 +14,7 @@ namespace Common
         public string PurchaseDate { get; set; }
         public dynamic PayedPrice { get; set; }
         public dynamic Payments { get; set; }
+        private static bool BoughtOnActivityDay { get; set; }
 
         public CSVPurchaseLine()
         {
@@ -134,6 +135,8 @@ namespace Common
                     {
                         return false;
                     }
+
+                    return IsBoughtOnActivityDay(newDate);
                 }
 
                 catch
@@ -148,7 +151,7 @@ namespace Common
         }
 
         public bool IsValidAsPurchase() =>
-            IsValidCreditCard() && IsValidInstallments() && IsBoughtOnActivityDay() && IsValidPrice() && IsValidPurchaseDateFormat();
+            IsValidCreditCard() && IsValidInstallments() && IsValidPrice() && IsValidPurchaseDateFormat();
 
         public int ExpectedIsValidNumber()
         {
@@ -179,31 +182,40 @@ namespace Common
             return false;
         }
 
-        private bool IsBoughtOnActivityDay()
+        private bool IsBoughtOnActivityDay(DateTime date)
         {
-            DateTime date = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-            switch (StoreID[2])
+            switch (StoreID[1])
             {
                 case 'A':
+                    BoughtOnActivityDay = true;
                         return true;
                     break;
 
                 case 'B':
                     if (date.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        BoughtOnActivityDay = true;
+
                         return true;
+                    }
                     break;
 
                 case 'C':
                     if (date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Friday)
+                    {
+                        BoughtOnActivityDay = true;
+
                         return true;
+                    }
                     break;
 
                 case 'D':
-                        return true;
+                    BoughtOnActivityDay = true;
+                    return true;
                     break;
             }
 
+            BoughtOnActivityDay = false;
             return false;
         }
 
@@ -219,7 +231,7 @@ namespace Common
                 return "Invalid installments";
             }
 
-            if (!IsBoughtOnActivityDay())
+            if (!BoughtOnActivityDay) //turn to normal date
             {
                 return "Invalid purchase on non-activity day";
             }
@@ -273,6 +285,5 @@ namespace Common
 
         private double ExpectedPricePerInstallment() =>
             double.Parse(PayedPrice)/ExpectedNumOfInstallments();
-        
     }
 }

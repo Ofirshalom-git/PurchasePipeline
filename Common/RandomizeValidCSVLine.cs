@@ -13,6 +13,7 @@ namespace Common
         private static Random _yearRnd { get; set; }
         private static Random _monthRnd { get; set; }
         private static Random _dayRnd { get; set; }
+        private static string _storeId {get; set;}
 
         public RandomizeValidCSVLine()
         {
@@ -21,10 +22,11 @@ namespace Common
             _yearRnd = new Random();
             _monthRnd = new Random();
             _dayRnd = new Random();
+            _storeId = RandomizeStoreId();
         }
         
         public CSVPurchaseLine RandomizeLine() =>
-            new CSVPurchaseLine(RandomizeStoreId(), RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
         
         public string RandomizeStoreId()
         {
@@ -45,27 +47,64 @@ namespace Common
 
         public string RandomizeCreditCard()
         {
-            //String CredirCard = "";
-
-            //for(var i =0; i < 16; i++)
-            //{
-            //    CredirCard += _numberUnit.Next(0, 9);
-            //}
-
-            //return CredirCard.ToString();
-
             return "4557446145890236";
+        }
+
+        private bool BoughtOnActivityDay(DateTime date)
+        {
+            switch (_storeId[1])
+            {
+                case 'A':
+                    return true;
+                        break;
+
+                case 'B':
+                    if(date.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 'C':
+                    if (date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Friday)
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 'D':
+                    return true;
+                    break;
+            }
+
+            return false;
         }
 
         public string RandomizePurchaseDate()
         {
-            int year = (int)_yearRnd.Next(1000, DateTime.Now.Year - 1);
+            int year, month, day;
+            DateTime date;
 
-            int month = (int)_monthRnd.Next(1, 12);
+            do //date is not on an open day
+            {
+                year = _yearRnd.Next(1000, DateTime.Now.Year - 1);
+                month = _monthRnd.Next(1, 12);
+                day = _dayRnd.Next(1, 28);
 
-            int day = (int)_dayRnd.Next(1, 28);
+                date = new DateTime(year, month, day);
+            }
+
+            while (!BoughtOnActivityDay(date));
 
             return $"{year}-{month:D2}-{day:D2}";
+
+            //int year = (int)_yearRnd.Next(1000, DateTime.Now.Year - 1);
+
+            //int month = (int)_monthRnd.Next(1, 12);
+
+            //int day = (int)_dayRnd.Next(1, 28);
+
+            //return $"{year}-{month:D2}-{day:D2}";
         }
 
         public string RandomizePayedPrice()
