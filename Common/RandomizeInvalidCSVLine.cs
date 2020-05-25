@@ -30,7 +30,7 @@ namespace Common
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceEmptyString(), ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidPriceLineNumeric() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceLineNumeric(), ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceNumeric(), ValidLineRandomizer.RandomizeInstallments());
 
         //storeId
         public CSVPurchaseLine GetInvalidStoreIdLineLetters() =>

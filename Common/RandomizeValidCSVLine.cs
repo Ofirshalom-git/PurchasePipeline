@@ -56,7 +56,8 @@ namespace Common
             {
                 case 'A':
                     return true;
-                        break;
+                    
+                    break;
 
                 case 'B':
                     if(date.DayOfWeek != DayOfWeek.Saturday)
@@ -85,7 +86,7 @@ namespace Common
             int year, month, day;
             DateTime date;
 
-            do //date is not on an open day
+            do 
             {
                 year = _yearRnd.Next(1000, DateTime.Now.Year - 1);
                 month = _monthRnd.Next(1, 12);
@@ -96,15 +97,9 @@ namespace Common
 
             while (!BoughtOnActivityDay(date));
 
-            return $"{year}-{month:D2}-{day:D2}";
-
-            //int year = (int)_yearRnd.Next(1000, DateTime.Now.Year - 1);
-
-            //int month = (int)_monthRnd.Next(1, 12);
-
-            //int day = (int)_dayRnd.Next(1, 28);
-
             //return $"{year}-{month:D2}-{day:D2}";
+            return date.ToString("yyyy-MM-dd");
+
         }
 
         public string RandomizePayedPrice()
@@ -132,10 +127,10 @@ namespace Common
                 case 0:
                     return "FULL";
                 case 1:
-                    return "";
-                default:
-                    return new Random().Next(0, (int)Convert.ToDouble(Price) * 10).ToString();
+                    return "";                
             }
+
+            return new Random().Next(0, (int)Convert.ToDouble(Price) * 10).ToString();
         }
     }
 }
