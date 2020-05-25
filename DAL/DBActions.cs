@@ -29,11 +29,12 @@ namespace DAL
             //connetionString = $"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};";
             connetionString = $"server=localhost;user=root;database=hafifot;password=root;";
             this.Connection = new MySqlConnection(connetionString);
-            this.Connection.Open();
         }
 
         public List<PurchaseDBBody> GetAllPurchases()
         {
+            this.Connection.Open();
+
             List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
 
             var sqlQuery = "SELECT * FROM purchases";
@@ -67,22 +68,68 @@ namespace DAL
         {
             String formatedDate = "";
 
-            formatedDate += unformatedDate[6];
-            formatedDate += unformatedDate[7];
-            formatedDate += unformatedDate[8];
-            formatedDate += unformatedDate[9];
-            formatedDate += "-";
-            formatedDate += unformatedDate[1];
-            formatedDate += unformatedDate[2];
-            formatedDate += "-";
-            formatedDate += unformatedDate[3];
-            formatedDate += unformatedDate[4];
+            if (unformatedDate[5] == '/' && unformatedDate[2] == '/')
+            {
+                formatedDate += unformatedDate[6];
+                formatedDate += unformatedDate[7];
+                formatedDate += unformatedDate[8];
+                formatedDate += unformatedDate[9];
+                formatedDate += "-";
+                formatedDate += unformatedDate[0];
+                formatedDate += unformatedDate[1];
+                formatedDate += "-";
+                formatedDate += unformatedDate[3];
+                formatedDate += unformatedDate[4];
+            }
+
+            else if (unformatedDate[4] == '/' && unformatedDate[2] == '/')
+            {
+                formatedDate += unformatedDate[5];
+                formatedDate += unformatedDate[6];
+                formatedDate += unformatedDate[7];
+                formatedDate += unformatedDate[8];
+                formatedDate += "-";
+                formatedDate += unformatedDate[0];
+                formatedDate += unformatedDate[1];
+                formatedDate += "-";
+                formatedDate += "0";
+                formatedDate += unformatedDate[3];
+            }
+
+            else if (unformatedDate[4] == '/' && unformatedDate[1] == '/')
+            {
+                formatedDate += unformatedDate[5];
+                formatedDate += unformatedDate[6];
+                formatedDate += unformatedDate[7];
+                formatedDate += unformatedDate[8];
+                formatedDate += "-";
+                formatedDate += "0";
+                formatedDate += unformatedDate[0];
+                formatedDate += "-";
+                formatedDate += unformatedDate[2];
+                formatedDate += unformatedDate[3];
+            }
+
+            else if (unformatedDate[3] == '/' && unformatedDate[1] == '/')
+            {
+                formatedDate += unformatedDate[4];
+                formatedDate += unformatedDate[5];
+                formatedDate += unformatedDate[6];
+                formatedDate += unformatedDate[7];
+                formatedDate += "-";
+                formatedDate += "0";
+                formatedDate += unformatedDate[0];
+                formatedDate += "-";
+                formatedDate += "0";
+                formatedDate += unformatedDate[2];
+            }
 
             return formatedDate;
         }
 
         public List<PurchaseDBBody> GetPurchaseById(string id)
         {
+            this.Connection.Open();
             MySqlCommand command;
             MySqlDataReader dataReader;
 
@@ -107,11 +154,12 @@ namespace DAL
         {
             dataReader.Close();
             command.Dispose();
+            Connection.Close();
         }
 
         public void InsertPurchase(PurchaseDBBody purchase)
         {
-            Connection.Open();
+            this.Connection.Open();
             MySqlCommand command;
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             String sql = "";
@@ -131,15 +179,20 @@ namespace DAL
         {
             try
             {
+                this.Connection.Open();
+
                 using (MySqlCommand command = new MySqlCommand("TRUNCATE TABLE hafifot.purchases", Connection))
                 {
                     command.ExecuteNonQuery();
                 }
+
+                this.Connection.Close();
             }
 
             catch (SystemException ex)
             {
-                Console.WriteLine(string.Format("An error occurred: {0}", ex.Message)); 
+                Console.WriteLine(string.Format("An error occurred: {0}", ex.Message));
+                //this.Connection.Close();
             }
         }
     }
