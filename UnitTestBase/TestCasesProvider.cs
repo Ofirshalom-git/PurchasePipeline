@@ -17,19 +17,27 @@ namespace UnitTestBase
                 return true;
             }
         
-            if(expectedAndExistingPurchaces[0].Count == 1 && expectedAndExistingPurchaces[1].Count == 1)
+            if(expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
             {
-                return (expectedAndExistingPurchaces[0][0].StoreType == expectedAndExistingPurchaces[1][0].StoreType
-                    && expectedAndExistingPurchaces[0][0].ActivityDays == expectedAndExistingPurchaces[1][0].ActivityDays
-                    && expectedAndExistingPurchaces[0][0].StoreID == expectedAndExistingPurchaces[1][0].StoreID
-                    && expectedAndExistingPurchaces[0][0].CreditCard == expectedAndExistingPurchaces[1][0].CreditCard
-                    && expectedAndExistingPurchaces[0][0].PurchaseDate == expectedAndExistingPurchaces[1][0].PurchaseDate
-                    && expectedAndExistingPurchaces[0][0].InsertionDate == expectedAndExistingPurchaces[1][0].InsertionDate
-                    && expectedAndExistingPurchaces[0][0].TotalPrice == expectedAndExistingPurchaces[1][0].TotalPrice
-                    && expectedAndExistingPurchaces[0][0].Installments == expectedAndExistingPurchaces[1][0].Installments
-                    && expectedAndExistingPurchaces[0][0].PricePerInstallment == expectedAndExistingPurchaces[1][0].PricePerInstallment
-                    && expectedAndExistingPurchaces[0][0].IsValid == expectedAndExistingPurchaces[1][0].IsValid
-                    && expectedAndExistingPurchaces[0][0].WhyInvalid == expectedAndExistingPurchaces[1][0].WhyInvalid);
+                for(var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                {
+                    if ((expectedAndExistingPurchaces[0][i].StoreType == expectedAndExistingPurchaces[1][i].StoreType
+                    && expectedAndExistingPurchaces[0][i].ActivityDays == expectedAndExistingPurchaces[1][i].ActivityDays
+                    && expectedAndExistingPurchaces[0][i].StoreID == expectedAndExistingPurchaces[1][i].StoreID
+                    && expectedAndExistingPurchaces[0][i].CreditCard == expectedAndExistingPurchaces[1][i].CreditCard
+                    && expectedAndExistingPurchaces[0][i].PurchaseDate == expectedAndExistingPurchaces[1][i].PurchaseDate
+                    && expectedAndExistingPurchaces[0][i].InsertionDate == expectedAndExistingPurchaces[1][i].InsertionDate
+                    && expectedAndExistingPurchaces[0][i].TotalPrice == expectedAndExistingPurchaces[1][i].TotalPrice
+                    && expectedAndExistingPurchaces[0][i].Installments == expectedAndExistingPurchaces[1][i].Installments
+                    && expectedAndExistingPurchaces[0][i].PricePerInstallment == expectedAndExistingPurchaces[1][i].PricePerInstallment
+                    && expectedAndExistingPurchaces[0][i].IsValid == expectedAndExistingPurchaces[1][i].IsValid
+                    && expectedAndExistingPurchaces[0][i].WhyInvalid == expectedAndExistingPurchaces[1][i].WhyInvalid) == false)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
 
             return false;
