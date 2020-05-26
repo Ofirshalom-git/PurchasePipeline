@@ -21,7 +21,7 @@ namespace Common
 
         public CSVPurchaseLine GetLowerCaseFullInstallmentsLine() =>
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, "full");
-
+        
         public CSVPurchaseLine GetRandomalInstallmentsLine() =>
                     new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetRandomalStringInstallments());
                 

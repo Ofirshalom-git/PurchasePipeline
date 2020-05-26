@@ -26,8 +26,11 @@ namespace Common
         }
         
         public CSVPurchaseLine RandomizeLine() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
-        
+            new CSVPurchaseLine(_storeId, "", RandomizePurchaseDate(), "90000", "3");
+
+        //public CSVPurchaseLine RandomizeLine() =>
+          //  new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
+
         public string RandomizeStoreId()
         {
             String storeId = "";
