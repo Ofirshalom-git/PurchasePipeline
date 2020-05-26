@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
@@ -64,6 +65,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CSVTests.cs" />
+    <Compile Include="DataRowAttribute.cs" />
     <Compile Include="DBInsertionTest.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="PerformenceSurvivabilityTests.cs" />

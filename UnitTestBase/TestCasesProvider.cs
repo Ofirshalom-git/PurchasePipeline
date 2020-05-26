@@ -312,5 +312,43 @@ namespace UnitTestBase
             return existingAndExpectedPurchases;
         }
 
+
+        //DB insertion tests
+        //1
+        public static List<List<PurchaseDBBody>> SendInvalidCreditCardCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        {
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
+
+            RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
+
+            List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
+
+            switch (testCase)
+            {
+                case "numeric":
+                    for (var i = 0; i < numOfLines; i++)
+                    {
+                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidCreditCardNunericLine());
+                    }
+
+                    rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+                    break;
+
+                case "non numeric":
+                    for (var i = 0; i < numOfLines; i++)
+                    {
+                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidCreditCardNonNunericLine());
+                    }
+
+                    rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+                    break;
+            }
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
+        }
     }
 }

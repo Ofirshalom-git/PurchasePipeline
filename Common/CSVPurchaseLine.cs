@@ -31,7 +31,7 @@ namespace Common
         }
 
         public bool IsValidForDB() =>
-            IsValidStoreIdFormat() && IsValidPrice() && IsValidInstallments() && IsValidPurchaseDateFormat();
+            IsValidStoreIdFormat() && IsValidPrice() && IsValidInstallments() && IsValidPurchaseDateFormat() && BoughtOnActivityDay;
 
         private bool IsValidStoreIdFormat()
         {
@@ -64,7 +64,7 @@ namespace Common
 
             if(double.TryParse(PayedPrice, out price))
             {
-                return (price > 0 && price < 5000);
+                return (price / int.Parse(Payments) > 0 && price / int.Parse(Payments) < 5000);
             }
 
             return false;
@@ -235,6 +235,7 @@ namespace Common
             {
                 return "Invalid purchase on non-activity day";
             }
+
             if (!IsValidPrice())
             {
                 return "Price per installment cant be higher than 5000"; //by DB
@@ -242,7 +243,7 @@ namespace Common
 
             if (!IsValidPurchaseDateFormat())
             {
-                return "Invalid purchase date later than insertion";
+                return "The purchase date cant be in the future";
             }
 
             return "null";
