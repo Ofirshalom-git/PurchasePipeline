@@ -21,13 +21,19 @@ namespace UnitTestBase
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void InvalidInstallmentsOverflowPriorityTest()
         {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
+            // create send invalid installments csv file 
+            TestCasesProvider.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void TestMethod1()
         {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
+            // create send invalid purchase by non activity date csv file 
+            TestCasesProvider.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
 
