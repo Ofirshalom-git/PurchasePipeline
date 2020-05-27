@@ -15,13 +15,6 @@ namespace Common
             ValidLineRandomizer = validLineRandomizer;
         }
 
-        //credit card
-        public CSVPurchaseLine GetInvalidCreditCardNunericLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), RandomizeInvalidCreditCardNumeric(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
-
-        public CSVPurchaseLine GetInvalidCreditCardNonNunericLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), RandomizeInvalidCreditCardNonNumeric(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
-
         //installments
         public CSVPurchaseLine GetNegitiveInstallmentsLine() =>
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetNegitiveInstallments());
@@ -61,6 +54,12 @@ namespace Common
 
         public CSVPurchaseLine GetInvalidDateFormatLineMonth() =>
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatMonth(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+
+        //make it invalid by adding get future date action
+        public CSVPurchaseLine GetInvalidDateFormatLineFuture() =>
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatMonth(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+
+        //Actualizing
 
         //installments
         private string GetNegitiveInstallments()
@@ -224,39 +223,5 @@ namespace Common
             return purchaseDate.ToString();
         }
 
-        //credit card
-        private string RandomizeInvalidCreditCardNumeric()
-        {
-            Random rnd = new Random();
-            String creditCard = "";
-
-            for(var i = 0; i < 15; i++)
-            {
-                creditCard += rnd.Next(0, 9);
-            }
-
-            return creditCard;
-        }
-
-        private string RandomizeInvalidCreditCardNonNumeric()
-        {
-            Random rnd = new Random();
-            String creditCard = "";
-
-            for (var i = 0; i < 16; i++)
-            {
-                if(i%2 == 0)
-                {
-                    creditCard += rnd.Next(0, 9);
-                }
-
-                else
-                {
-                    creditCard += "G";
-                }
-            }
-
-            return creditCard;
-        }
     }
 }

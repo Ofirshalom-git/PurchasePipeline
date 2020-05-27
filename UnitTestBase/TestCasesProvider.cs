@@ -321,6 +321,8 @@ namespace UnitTestBase
 
             RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
 
+            RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
+
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
 
             switch (testCase)
@@ -328,7 +330,7 @@ namespace UnitTestBase
                 case "numeric":
                     for (var i = 0; i < numOfLines; i++)
                     {
-                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidCreditCardNunericLine());
+                        CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNunericLine());
                     }
 
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
@@ -337,7 +339,7 @@ namespace UnitTestBase
                 case "non numeric":
                     for (var i = 0; i < numOfLines; i++)
                     {
-                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidCreditCardNonNunericLine());
+                        CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNonNunericLine());
                     }
 
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
