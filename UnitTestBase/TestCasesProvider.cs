@@ -319,8 +319,6 @@ namespace UnitTestBase
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
-            RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
-
             RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
 
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();

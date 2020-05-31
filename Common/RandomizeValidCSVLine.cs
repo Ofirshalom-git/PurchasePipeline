@@ -53,7 +53,7 @@ namespace Common
             return "4557446145890236";
         }
 
-        private bool BoughtOnActivityDay(DateTime date)
+        public bool BoughtOnActivityDay(DateTime date)
         {
             switch (_storeId[1])
             {
@@ -102,7 +102,6 @@ namespace Common
 
             //return $"{year}-{month:D2}-{day:D2}";
             return date.ToString("yyyy-MM-dd");
-
         }
 
         public string RandomizePayedPrice()

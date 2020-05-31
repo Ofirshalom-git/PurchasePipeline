@@ -26,7 +26,7 @@ namespace Common
 
             foreach(var purchase in Purchases)
             {
-                if (purchase.IsValidForDB())
+                if (purchase.IsValidForDBInsertion())
                 {
                     expectedPurchases.Add(purchase.ExpectedPurchaseDBBody());
                 }

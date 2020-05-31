@@ -30,8 +30,8 @@ namespace Common
             Payments = payments;
         }
 
-        public bool IsValidForDB() =>
-            IsValidStoreIdFormat() && IsValidPrice() && IsValidInstallments() && IsValidPurchaseDateFormat() && BoughtOnActivityDay;
+        public bool IsValidForDBInsertion() =>
+            IsValidStoreIdFormat() && IsValidPrice() && IsValidInstallmentsForInsertion() && IsValidPurchaseDateFormat();
 
         private bool IsValidStoreIdFormat()
         {
@@ -70,12 +70,12 @@ namespace Common
             return false;
         }
 
-        private bool IsValidInstallments()
+        private bool IsValidInstallmentsForInsertion()
         {
             double PaymentsValue;
             if (double.TryParse(Payments, out PaymentsValue))
             {
-                return (PaymentsValue >= 1 && PaymentsValue < 10 * double.Parse(PayedPrice));
+                return (PaymentsValue >= 1);
             }
             else if (Payments == "" || Payments == "FULL" )
             {
@@ -85,10 +85,35 @@ namespace Common
             return false;
         }
 
+        private bool IsValidOverflowInstallmentsAsPurchase(string price)
+        {
+            var payedPrice = price;
+            double PaymentsValue;
+            if (double.TryParse(Payments, out PaymentsValue))
+            {
+                return (PaymentsValue <= 10 * double.Parse(payedPrice));
+            }
+
+            return (Payments == "" || Payments == "FULL");
+        }
+
+        private bool IsValidOverflowPerInstallmentsAsPurchase(string price)
+        {
+            var payedPrice = double.Parse(price);
+            double PaymentsValue;
+            if (double.TryParse(Payments, out PaymentsValue))
+            {
+                return (payedPrice / PaymentsValue <= 5000);
+            }
+
+            return ((Payments == "" && payedPrice < 5000) || (Payments == "FULL" && payedPrice < 5000));
+        }
+
         private bool IsValidPurchaseDateFormat()
         {
             if(PurchaseDate.Length == 10 && (PurchaseDate[4] == '-' && PurchaseDate[7] == '-'))
             {
+                //yyyy-MM-dd format validation
                 int num;
                 for(var i = 0; i < 10; i++)
                 {
@@ -101,6 +126,7 @@ namespace Common
                     }
                 }
 
+                //not a future date validation
                 try
                 {
                     DateTime newDate = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
@@ -136,6 +162,7 @@ namespace Common
                         return false;
                     }
 
+                    //bought on activity day validation
                     return IsBoughtOnActivityDay(newDate);
                 }
 
@@ -143,15 +170,44 @@ namespace Common
                 {
                     return false;
                 }
-
-                return true;
             }
 
             return false;
         }
 
-        public bool IsValidAsPurchase() =>
-            IsValidCreditCard() && IsValidInstallments() && IsValidPrice() && IsValidPurchaseDateFormat();
+        public bool IsValidAsPurchase(string price, DateTime purchaseDate) =>
+            IsValidCreditCard() && IsValidOverflowInstallmentsAsPurchase(price) && IsValidOverflowPerInstallmentsAsPurchase(price) && IsValidDateNotLate(purchaseDate) && BoughtOnActivityDay;
+
+        public bool IsValidDateNotLate(DateTime purchaseDate)
+        {
+            if (purchaseDate.Year < DateTime.Today.Year)
+            {
+                return true;
+            }
+
+            else if (purchaseDate.Year == DateTime.Today.Year)
+            {
+                if (purchaseDate.Month < DateTime.Today.Month)
+                {
+                    return true;
+                }
+
+                else if (purchaseDate.Month == DateTime.Today.Month)
+                {
+                    if (purchaseDate.Day < DateTime.Today.Day)
+                    {
+                        return true;
+                    }
+
+                    else if (purchaseDate.Day == DateTime.Today.Day)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
 
         public int ExpectedIsValidNumber()
         {
@@ -226,7 +282,7 @@ namespace Common
                 return "The credit card number is not valid"; 
             }
 
-            if (!IsValidInstallments())
+            if (!IsValidInstallmentsForInsertion())
             {
                 return "Invalid installments";
             }
