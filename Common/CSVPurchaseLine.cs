@@ -291,7 +291,7 @@ namespace Common
                 return "Invalid installments";
             }
 
-            else if (!BoughtOnActivityDay) 
+            else if (!IsBoughtOnActivityDay(ParseToDateBySystemFormat(PurchaseDate))) 
             {
                 return "Purchase was made on a day that the store is closed";
             }

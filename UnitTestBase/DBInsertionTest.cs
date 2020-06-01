@@ -43,7 +43,6 @@ namespace UnitTestBase
             DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
-
         [TestMethod]
         public void InvalidPerInstallmentsOverflowPriorityTest()
         {
@@ -52,7 +51,12 @@ namespace UnitTestBase
             DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
+        [TestMethod]
+        public void InvalidFutureDatePriorityTest()
+        {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidFutureDateCSV(RabbitMQLogics, DBCommunication, 1);
 
-
+            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+        }
     }
 }

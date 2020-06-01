@@ -116,6 +116,29 @@ namespace UnitTestBase
             return existingAndExpectedPurchases;
         }
 
+
+        //5
+        public List<List<PurchaseDBBody>> SendInvalidFutureDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        {
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
+
+            RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
+
+            List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
+            for (var i = 0; i < numOfLines; i++)
+            {
+                CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidDateLaterThanInsertionLine());
+            }
+
+            rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
+        }
+
     }
 
 }

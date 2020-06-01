@@ -44,7 +44,7 @@ namespace Common
 
         //late date
         public CSVPurchaseLine GetInvalidDateLaterThanInsertionLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeLatePurchaseDate(), Price, GetValidInstallments(Price));
+            new CSVPurchaseLine("AA12345", ValidLineRandomizer.RandomizeCreditCard(), RandomizeLatePurchaseDate(), Price, GetValidInstallments(Price));
 
         //Randomizer vvv
 
