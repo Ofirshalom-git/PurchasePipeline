@@ -211,7 +211,7 @@ namespace Common
 
         public int ExpectedIsValidNumber()
         {
-            if(IsValidAsPurchase())
+            if(IsValidAsPurchase(PayedPrice, ParseToDateBySystemFormat(PurchaseDate)))
             {
                 return 1;
             }
@@ -245,59 +245,57 @@ namespace Common
                 case 'A':
                     BoughtOnActivityDay = true;
                         return true;
-                    break;
 
                 case 'B':
                     if (date.DayOfWeek != DayOfWeek.Saturday)
                     {
                         BoughtOnActivityDay = true;
-
                         return true;
                     }
+
                     break;
 
                 case 'C':
                     if (date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Friday)
                     {
                         BoughtOnActivityDay = true;
-
                         return true;
                     }
+
                     break;
 
                 case 'D':
                     BoughtOnActivityDay = true;
                     return true;
-                    break;
             }
 
             BoughtOnActivityDay = false;
             return false;
         }
 
-        public string WhyInvalidPurchase()
+        public string WhyInvalidAsPurchase()
         {
             if (!IsValidCreditCard())
             {
                 return "The credit card number is not valid"; 
             }
 
-            if (!IsValidInstallmentsForInsertion())
+            else if (!IsValidOverflowInstallmentsAsPurchase(price))
             {
                 return "Invalid installments";
             }
 
-            if (!BoughtOnActivityDay) //turn to normal date
+            else if (!BoughtOnActivityDay) 
             {
                 return "Invalid purchase on non-activity day";
             }
 
-            if (!IsValidPrice())
+            else if (!IsValidOverflowPerInstallmentsAsPurchase(PayedPrice))
             {
-                return "Price per installment cant be higher than 5000"; //by DB
+                return "Price per installment cant be higher than 5000"; 
             }
 
-            if (!IsValidPurchaseDateFormat())
+            if (!IsValidDateNotLate(ParseToDateBySystemFormat(PurchaseDate)))
             {
                 return "The purchase date cant be in the future";
             }
@@ -305,8 +303,18 @@ namespace Common
             return "null";
         }
 
+        private DateTime ParseToDateBySystemFormat(string date)
+        {
+            var day = int.Parse($"{date[8]}{date[9]}");
+            var month = int.Parse($"{date[5]}{date[6]}");
+            var year = int.Parse($"{date[0]}{date[1]}{date[2]}{date[3]}");
+            
+            DateTime newDate = new DateTime(year, month, day);
+            return newDate;
+        }
+
         public PurchaseDBBody ExpectedPurchaseDBBody() =>
-            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidPurchase());
+            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
 
         private string ExpectedStoreType() =>
             StoreID[0].ToString();
