@@ -43,5 +43,29 @@ namespace UnitTestBase
             return false;
         }
 
+
+        public bool WyInvalidReasonIsSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        {
+            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            {
+                return true;
+            }
+
+            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            {
+                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                {
+                    if (expectedAndExistingPurchaces[0][i].WhyInvalid != expectedAndExistingPurchaces[1][i].WhyInvalid)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }
