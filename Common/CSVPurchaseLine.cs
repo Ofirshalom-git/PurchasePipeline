@@ -31,7 +31,7 @@ namespace Common
         }
 
         public bool IsValidForDBInsertion() =>
-            IsValidStoreIdFormat() && IsValidPrice() && IsValidInstallmentsForInsertion() && IsValidPurchaseDateFormat();
+            IsValidStoreIdFormat() && IsValidPriceForInsertion() && IsValidInstallmentsForInsertion() && IsValidPurchaseDateFormat();
 
         private bool IsValidStoreIdFormat()
         {
@@ -58,22 +58,24 @@ namespace Common
             return false;
         }
 
-        private bool IsValidPrice()
+        private bool IsValidPriceForInsertion()
         {
             double price;
+            return (double.TryParse(PayedPrice.ToString(), out price));
+            //double price;
 
-            if(double.TryParse(PayedPrice, out price))
-            {
-                return (price / int.Parse(Payments) > 0 && price / int.Parse(Payments) < 5000);
-            }
+            //if(double.TryParse(PayedPrice, out price))
+            //{
+            //    return (price / int.Parse(Payments.ToString()) > 0 && price / int.Parse(Payments.ToString()) < 5000);
+            //}
 
-            return false;
+            //return false;
         }
 
         private bool IsValidInstallmentsForInsertion()
         {
-            double PaymentsValue;
-            if (double.TryParse(Payments, out PaymentsValue))
+            int PaymentsValue;
+            if (int.TryParse(Payments.ToString(), out PaymentsValue))
             {
                 return (PaymentsValue >= 1);
             }
@@ -127,49 +129,51 @@ namespace Common
                 }
 
                 //not a future date validation
-                try
-                {
-                    DateTime newDate = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                //try
+                //{
+                //    DateTime newDate = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-                    if (newDate.Year > DateTime.Today.Year)
-                    {
-                        return false;
-                    }
+                //    if (newDate.Year > DateTime.Today.Year)
+                //    {
+                //        return false;
+                //    }
 
-                    if (newDate.Year == DateTime.Today.Year)
-                    {
-                        if (newDate.Month > DateTime.Today.Month)
-                        {
-                            return false;
-                        }
+                //    if (newDate.Year == DateTime.Today.Year)
+                //    {
+                //        if (newDate.Month > DateTime.Today.Month)
+                //        {
+                //            return false;
+                //        }
 
-                        if (newDate.Month == DateTime.Today.Month)
-                        {
-                            if (newDate.Day > DateTime.Today.Day)
-                            {
-                                return false;
-                            }
-                        }
-                    }
+                //        if (newDate.Month == DateTime.Today.Month)
+                //        {
+                //            if (newDate.Day > DateTime.Today.Day)
+                //            {
+                //                return false;
+                //            }
+                //        }
+                //    }
 
-                    if (newDate.Month > 12 || newDate.Month < 1)
-                    {
-                        return false;
-                    }
+                //    if (newDate.Month > 12 || newDate.Month < 1)
+                //    {
+                //        return false;
+                //    }
 
-                    if (newDate.Day > 31 || newDate.Day < 1)
-                    {
-                        return false;
-                    }
+                //    if (newDate.Day > 31 || newDate.Day < 1)
+                //    {
+                //        return false;
+                //    }
 
-                    //bought on activity day validation
-                    return IsBoughtOnActivityDay(newDate);
-                }
+                //    //bought on activity day validation
+                //    return IsBoughtOnActivityDay(newDate);
+                //}
 
-                catch
-                {
-                    return false;
-                }
+                //catch
+                //{
+                //    return false;
+                //}
+
+                return true;
             }
 
             return false;
@@ -280,7 +284,7 @@ namespace Common
                 return "The credit card number is not valid"; 
             }
 
-            else if (!IsValidOverflowInstallmentsAsPurchase(price))
+            else if (!IsValidOverflowInstallmentsAsPurchase(PayedPrice))
             {
                 return "Invalid installments";
             }
@@ -340,12 +344,12 @@ namespace Common
 
         private int ExpectedNumOfInstallments()
         {
-            if (Payments == "FULL" || Payments == "")
+            if (Payments.ToString() == "FULL" || Payments.ToString() == "")
             {
                 return 1;
             }
             
-            return int.Parse(Payments);
+            return int.Parse(Payments.ToString());
         }
 
         private double ExpectedPricePerInstallment() =>

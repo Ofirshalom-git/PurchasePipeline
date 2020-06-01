@@ -11,48 +11,54 @@ namespace UnitTestBase
     public class DBInsertionTest : UnitTestBase
     {
         [TestMethod]
-        [DataRow("numeric")]
-        [DataRow("non numeric")]
-        public void InvalidCreditCardReasonPriorityTest(string testCase)
+        public void InvalidCreditCardReasonPriorityTestNumeric()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, testCase, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "numeric", 1);
 
-            TestCasesProvider.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
-        public void InvalidInstallmentsOverflowPriorityTest()
+        public void InvalidCreditCardReasonPriorityTestNonNumeric()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
-            // create send invalid installments csv file 
-            TestCasesProvider.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "non numeric", 1);
+
+            DBTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = TestCasesProvider.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
-            // create send invalid purchase by non activity date csv file 
-            TestCasesProvider.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
-        }
+        //[TestMethod]
+        //public void InvalidInstallmentsOverflowPriorityTest()
+        //{
+        //    List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
+        //    // create send invalid installments csv file 
+        //    DBTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+        //}
+
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //    List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardCSVFile(RabbitMQLogics, DBCommunication, 1);
+        //    // create send invalid purchase by non activity date csv file 
+        //    DBTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+        //}
 
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
 
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
 
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
 
 
 

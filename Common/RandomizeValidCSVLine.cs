@@ -26,7 +26,7 @@ namespace Common
         }
         
         public CSVPurchaseLine RandomizeLine() =>
-            new CSVPurchaseLine(_storeId, "", RandomizePurchaseDate(), "90000", "3");
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
 
         //public CSVPurchaseLine RandomizeLine() =>
           //  new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
@@ -121,8 +121,7 @@ namespace Common
 
         public string RandomizeInstallments()
         {
-            Random intOrStringRnd = new Random();
-            int intOrString = (int)intOrStringRnd.Next(0, 9);
+            var intOrString = new Random().Next(0, 9);
 
             switch (intOrString)
             {

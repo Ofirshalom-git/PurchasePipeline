@@ -69,7 +69,9 @@
     <Compile Include="DBInsertionTest.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="PerformenceSurvivabilityTests.cs" />
+    <Compile Include="TestCasesProviderCSV.cs" />
     <Compile Include="TestCasesProvider.cs" />
+    <Compile Include="TestCasesProviderDB.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

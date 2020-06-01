@@ -49,10 +49,10 @@ namespace TestAutomaition
 
         public string ConvertCSVLineToText(CSVPurchaseLine purchase)
         {
-            double PaymentValue;
-            if (double.TryParse(purchase.Payments, out PaymentValue))
+            int PaymentValue;
+            if (int.TryParse(purchase.Payments.ToString(), out PaymentValue))
             {
-                return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{double.Parse(purchase.Payments)}";
+                return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{int.Parse(purchase.Payments.ToString())}";
             }
             else
             {
