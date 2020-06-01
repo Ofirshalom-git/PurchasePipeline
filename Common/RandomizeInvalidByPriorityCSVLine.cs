@@ -10,15 +10,17 @@ namespace Common
     {
         public string Price { get; set; }
         private RandomizeValidCSVLine ValidLineRandomizer { get; set; }
-        private static Random _yearRnd { get; set; }
-        private static Random _monthRnd { get; set; }
-        private static Random _dayRnd { get; set; }
-        private static string _storeId { get; set; }
+        private Random _yearRnd = new Random();
+        private Random _monthRnd = new Random();
+        private Random _dayRnd = new Random();
+        private string _storeId { get; set; }
+
 
         public RandomizeInvalidByPriorityCSVLine(RandomizeValidCSVLine validLineRandomizer)
         {
             Price = RandomizeOverFiveThousandPrice(); // will be over 5,000
             ValidLineRandomizer = validLineRandomizer;
+            _storeId = ValidLineRandomizer.RandomizeStoreId();
         }
 
         //credit card
@@ -29,12 +31,12 @@ namespace Common
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), RandomizeInvalidCreditCardNonNumeric(), RandomizeLatePurchaseDate(), Price, GetInvalidInstallments(Price));
 
         //overflow installments
-        public CSVPurchaseLine GetOverflowInstallments() =>
+        public CSVPurchaseLine GetInvalidOverflowInstallments() =>
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeLatePurchaseDate(), Price, RandomizeInvalidOverflowInstallments());
 
         //non activity date
         public CSVPurchaseLine GetInvalidDateNonActivityPurchaseLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidNonActivityDay(), Price, GetValidInstallments(Price));
+            new CSVPurchaseLine("CC12345", ValidLineRandomizer.RandomizeCreditCard(), "1377-05-09", Price, GetValidInstallments(Price));
 
         //overflow per installment
         public CSVPurchaseLine GetInvalidOverflowPerInstallmentLine() =>
@@ -96,6 +98,7 @@ namespace Common
             int year, month, day;
             DateTime date;
 
+            var count = 0;
             do
             {
                 year = _yearRnd.Next(1000, DateTime.Now.Year - 1);
@@ -103,9 +106,10 @@ namespace Common
                 day = _dayRnd.Next(1, 28);
 
                 date = new DateTime(year, month, day);
+                count++;
             }
 
-            while (BoughtOnActivityDay(date));
+            while (BoughtOnActivityDay(date) && count < 100);
 
             //return $"{year}-{month:D2}-{day:D2}";
             return date.ToString("yyyy-MM-dd");

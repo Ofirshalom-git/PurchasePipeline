@@ -44,7 +44,7 @@ namespace UnitTestBase
         }
 
 
-        public bool WyInvalidReasonIsSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool WhyInvalidReasonIsSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
         {
             if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
             {

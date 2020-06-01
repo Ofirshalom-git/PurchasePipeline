@@ -91,24 +91,24 @@ namespace Common
         {
             var payedPrice = price;
             double PaymentsValue;
-            if (double.TryParse(Payments, out PaymentsValue))
+            if (double.TryParse(Payments.ToString(), out PaymentsValue))
             {
                 return (PaymentsValue <= 10 * double.Parse(payedPrice));
             }
 
-            return (Payments == "" || Payments == "FULL");
+            return (Payments.ToString() == "" || Payments.ToString() == "FULL");
         }
 
         private bool IsValidOverflowPerInstallmentsAsPurchase(string price)
         {
             var payedPrice = double.Parse(price);
             double PaymentsValue;
-            if (double.TryParse(Payments, out PaymentsValue))
+            if (double.TryParse(Payments.ToString(), out PaymentsValue))
             {
                 return (payedPrice / PaymentsValue <= 5000);
             }
 
-            return ((Payments == "" && payedPrice < 5000) || (Payments == "FULL" && payedPrice < 5000));
+            return (Payments.ToString() == "" && payedPrice < 5000) || (Payments.ToString() == "FULL" && payedPrice < 5000);
         }
 
         private bool IsValidPurchaseDateFormat()
@@ -244,6 +244,8 @@ namespace Common
 
         private bool IsBoughtOnActivityDay(DateTime date)
         {
+            //if(StoreID != null)
+
             switch (StoreID[1])
             {
                 case 'A':
@@ -291,7 +293,7 @@ namespace Common
 
             else if (!BoughtOnActivityDay) 
             {
-                return "Invalid purchase on non-activity day";
+                return "Purchase was made on a day that the store is closed";
             }
 
             else if (!IsValidOverflowPerInstallmentsAsPurchase(PayedPrice))

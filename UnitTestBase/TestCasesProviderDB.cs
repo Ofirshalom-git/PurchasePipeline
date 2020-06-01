@@ -50,34 +50,19 @@ namespace UnitTestBase
         }
 
         //2
-        public List<List<PurchaseDBBody>> SendInvalidOverflowInstallmentsCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public List<List<PurchaseDBBody>> SendInvalidOverflowInstallmentsCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
             RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
 
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
-
-            switch (testCase)
+            for (var i = 0; i < numOfLines; i++)
             {
-                case "numeric":
-                    for (var i = 0; i < numOfLines; i++)
-                    {
-                        CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNunericLine());
-                    }
-
-                    rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
-                    break;
-
-                case "non numeric":
-                    for (var i = 0; i < numOfLines; i++)
-                    {
-                        CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNonNunericLine());
-                    }
-
-                    rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
-                    break;
+                CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidOverflowInstallments());
             }
+
+            rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
 
             List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
             existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
@@ -87,6 +72,50 @@ namespace UnitTestBase
         }
 
 
+        //3
+        public List<List<PurchaseDBBody>> SendInvalidNonActivityDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        {
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
+
+            RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
+
+            List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
+            for (var i = 0; i < numOfLines; i++)
+            {
+                CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidDateNonActivityPurchaseLine());
+            }
+
+            rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
+        }
+
+        //4
+        public List<List<PurchaseDBBody>> SendInvalidPerInstallmentOverflowCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        {
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
+
+            RandomizeInvalidByPriorityCSVLine CsvInvalidByPriorityRandomizer = new RandomizeInvalidByPriorityCSVLine(CsvLineRandomizer);
+
+            List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
+            for (var i = 0; i < numOfLines; i++)
+            {
+                CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidOverflowPerInstallmentLine());
+            }
+
+            rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
+        }
 
     }
+
 }
