@@ -1,32 +1,55 @@
-﻿using Common;
-using System.Collections.Generic;
-
-namespace UnitTestBase
+﻿namespace UnitTestBase
 {
     public class TestCasesProvider
     {
-        public bool DBPurchacesAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool DBPurchacesAreSame(ExpectedVSExsistingPurchases expectedAndExistingPurchaces)
         {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == 0 && expectedAndExistingPurchaces.ExistingPurchases.Count == 0)
             {
                 return true;
             }
 
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == expectedAndExistingPurchaces.ExistingPurchases.Count)
             {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                int i = 0;
+                foreach(var expectedPurchase in expectedAndExistingPurchaces.ExpectedPurchases)
                 {
-                    if ((expectedAndExistingPurchaces[0][i].StoreType == expectedAndExistingPurchaces[1][i].StoreType
-                    && expectedAndExistingPurchaces[0][i].ActivityDays == expectedAndExistingPurchaces[1][i].ActivityDays
-                    && expectedAndExistingPurchaces[0][i].StoreID == expectedAndExistingPurchaces[1][i].StoreID
-                    && expectedAndExistingPurchaces[0][i].CreditCard == expectedAndExistingPurchaces[1][i].CreditCard
-                    && expectedAndExistingPurchaces[0][i].PurchaseDate == expectedAndExistingPurchaces[1][i].PurchaseDate
-                    && expectedAndExistingPurchaces[0][i].InsertionDate == expectedAndExistingPurchaces[1][i].InsertionDate
-                    && expectedAndExistingPurchaces[0][i].TotalPrice == expectedAndExistingPurchaces[1][i].TotalPrice
-                    && expectedAndExistingPurchaces[0][i].Installments == expectedAndExistingPurchaces[1][i].Installments
-                    && expectedAndExistingPurchaces[0][i].PricePerInstallment == expectedAndExistingPurchaces[1][i].PricePerInstallment
-                    && expectedAndExistingPurchaces[0][i].IsValid == expectedAndExistingPurchaces[1][i].IsValid
-                    && expectedAndExistingPurchaces[0][i].WhyInvalid == expectedAndExistingPurchaces[1][i].WhyInvalid) == false)
+                    if ((expectedPurchase.StoreType == expectedAndExistingPurchaces.ExistingPurchases[i].StoreType
+                    && expectedPurchase.ActivityDays == expectedAndExistingPurchaces.ExistingPurchases[i].ActivityDays
+                    && expectedPurchase.StoreID == expectedAndExistingPurchaces.ExistingPurchases[i].StoreID
+                    && expectedPurchase.CreditCard == expectedAndExistingPurchaces.ExistingPurchases[i].CreditCard
+                    && expectedPurchase.PurchaseDate == expectedAndExistingPurchaces.ExistingPurchases[i].PurchaseDate
+                    && expectedPurchase.InsertionDate == expectedAndExistingPurchaces.ExistingPurchases[i].InsertionDate
+                    && expectedPurchase.TotalPrice == expectedAndExistingPurchaces.ExistingPurchases[i].TotalPrice
+                    && expectedPurchase.Installments == expectedAndExistingPurchaces.ExistingPurchases[i].Installments
+                    && expectedPurchase.PricePerInstallment == expectedAndExistingPurchaces.ExistingPurchases[i].PricePerInstallment
+                    && expectedPurchase.IsValid == expectedAndExistingPurchaces.ExistingPurchases[i].IsValid
+                    && expectedPurchase.WhyInvalid == expectedAndExistingPurchaces.ExistingPurchases[i].WhyInvalid) == false)
+                    {
+                        return false;
+                    }
+
+                    i++;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool WhyInvalidReasonIsSame(ExpectedVSExsistingPurchases expectedAndExistingPurchaces)
+        {
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == 0 && expectedAndExistingPurchaces.ExistingPurchases.Count == 0)
+            {
+                return true;
+            }
+
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == expectedAndExistingPurchaces.ExistingPurchases.Count)
+            {
+                for (var i = 0; i < expectedAndExistingPurchaces.ExpectedPurchases.Count; i++)
+                {
+                    if (expectedAndExistingPurchaces.ExpectedPurchases[i].WhyInvalid != expectedAndExistingPurchaces.ExistingPurchases[i].WhyInvalid)
                     {
                         return false;
                     }
@@ -38,18 +61,18 @@ namespace UnitTestBase
             return false;
         }
 
-        public bool WhyInvalidReasonIsSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool RoundedPricesUpperAreSame(ExpectedVSExsistingPurchases expectedAndExistingPurchaces)
         {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == 0 && expectedAndExistingPurchaces.ExistingPurchases.Count == 0)
             {
                 return true;
             }
 
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == expectedAndExistingPurchaces.ExistingPurchases.Count)
             {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                for (var i = 0; i < expectedAndExistingPurchaces.ExpectedPurchases.Count; i++)
                 {
-                    if (expectedAndExistingPurchaces[0][i].WhyInvalid != expectedAndExistingPurchaces[1][i].WhyInvalid)
+                    if ("67.5" != expectedAndExistingPurchaces.ExistingPurchases[i].TotalPrice.ToString())
                     {
                         return false;
                     }
@@ -61,18 +84,18 @@ namespace UnitTestBase
             return false;
         }
 
-        public bool RoundedPricesUpperAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool RoundedPricesLowerAreSame(ExpectedVSExsistingPurchases expectedAndExistingPurchaces)
         {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == 0 && expectedAndExistingPurchaces.ExistingPurchases.Count == 0)
             {
                 return true;
             }
 
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            if (expectedAndExistingPurchaces.ExpectedPurchases.Count == expectedAndExistingPurchaces.ExistingPurchases.Count)
             {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                for (var i = 0; i < expectedAndExistingPurchaces.ExpectedPurchases.Count; i++)
                 {
-                    if ("67.5" != expectedAndExistingPurchaces[1][i].TotalPrice.ToString())
+                    if ("39.4" != expectedAndExistingPurchaces.ExistingPurchases[i].TotalPrice.ToString())
                     {
                         return false;
                     }
@@ -84,18 +107,18 @@ namespace UnitTestBase
             return false;
         }
 
-        public bool RoundedPricesLowerAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool PricePerInstallmentOver5000AreSame(ExpectedVSExsistingPurchases expectedVSExistingPurchaces)
         {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            if (expectedVSExistingPurchaces.ExpectedPurchases.Count == 0 && expectedVSExistingPurchaces.ExistingPurchases.Count == 0)
             {
                 return true;
             }
 
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            if (expectedVSExistingPurchaces.ExpectedPurchases.Count == expectedVSExistingPurchaces.ExistingPurchases.Count)
             {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                for (var i = 0; i < expectedVSExistingPurchaces.ExpectedPurchases.Count; i++)
                 {
-                    if ("39.4" != expectedAndExistingPurchaces[1][i].TotalPrice.ToString())
+                    if ("6000" != expectedVSExistingPurchaces.ExistingPurchases[i].PricePerInstallment.ToString())
                     {
                         return false;
                     }
@@ -107,41 +130,18 @@ namespace UnitTestBase
             return false;
         }
 
-        public bool PricePerInstallmentOver5000AreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        public bool PricePerInstallmentBelow5000AreSame(ExpectedVSExsistingPurchases expectedVSExistingPurchaces)
         {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            if (expectedVSExistingPurchaces.ExpectedPurchases.Count == 0 && expectedVSExistingPurchaces.ExistingPurchases.Count == 0)
             {
                 return true;
             }
 
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            if (expectedVSExistingPurchaces.ExpectedPurchases.Count == expectedVSExistingPurchaces.ExistingPurchases.Count)
             {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                for (var i = 0; i < expectedVSExistingPurchaces.ExpectedPurchases.Count; i++)
                 {
-                    if ("6000" != expectedAndExistingPurchaces[1][i].PricePerInstallment.ToString())
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool PricePerInstallmentBelow5000AreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
-        {
-            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
-            {
-                return true;
-            }
-
-            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
-            {
-                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
-                {
-                    if ("3000" != expectedAndExistingPurchaces[1][i].PricePerInstallment.ToString())
+                    if ("3000" != expectedVSExistingPurchaces.ExistingPurchases[i].PricePerInstallment.ToString())
                     {
                         return false;
                     }

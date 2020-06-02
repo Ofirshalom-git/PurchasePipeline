@@ -7,7 +7,7 @@ namespace UnitTestBase
     public class TestCasesProviderDB : TestCasesProvider
     {
         //1
-        public List<List<PurchaseDBBody>> SendInvalidCreditCardPriorityCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidCreditCardPriorityCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -36,15 +36,14 @@ namespace UnitTestBase
                     break;
             }
 
-            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
-            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
-            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+            ExpectedVSExsistingPurchases existingAndExpectedPurchases = new ExpectedVSExsistingPurchases
+                (new CSVFile(CSVLines).ExpectedDBBodyPurchases(), dbLogics.GetAllPurchases());
 
             return existingAndExpectedPurchases;
         }
 
         //2
-        public List<List<PurchaseDBBody>> SendInvalidOverflowInstallmentsCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidOverflowInstallmentsCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -58,15 +57,14 @@ namespace UnitTestBase
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
 
-            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
-            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
-            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+            ExpectedVSExsistingPurchases existingAndExpectedPurchases = new ExpectedVSExsistingPurchases
+                (new CSVFile(CSVLines).ExpectedDBBodyPurchases(), dbLogics.GetAllPurchases());
 
             return existingAndExpectedPurchases;
         }
 
         //3
-        public List<List<PurchaseDBBody>> SendInvalidNonActivityDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidNonActivityDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -80,15 +78,14 @@ namespace UnitTestBase
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
 
-            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
-            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
-            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+            ExpectedVSExsistingPurchases existingAndExpectedPurchases = new ExpectedVSExsistingPurchases
+                (new CSVFile(CSVLines).ExpectedDBBodyPurchases(), dbLogics.GetAllPurchases());
 
             return existingAndExpectedPurchases;
         }
 
         //4
-        public List<List<PurchaseDBBody>> SendInvalidPerInstallmentOverflowCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidPerInstallmentOverflowCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -102,15 +99,14 @@ namespace UnitTestBase
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
 
-            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
-            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
-            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+            ExpectedVSExsistingPurchases existingAndExpectedPurchases = new ExpectedVSExsistingPurchases
+                (new CSVFile(CSVLines).ExpectedDBBodyPurchases(), dbLogics.GetAllPurchases());
 
             return existingAndExpectedPurchases;
         }
 
         //5
-        public List<List<PurchaseDBBody>> SendInvalidFutureDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidFutureDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -124,9 +120,8 @@ namespace UnitTestBase
 
             rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
 
-            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
-            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
-            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+            ExpectedVSExsistingPurchases existingAndExpectedPurchases = new ExpectedVSExsistingPurchases
+                (new CSVFile(CSVLines).ExpectedDBBodyPurchases(), dbLogics.GetAllPurchases());
 
             return existingAndExpectedPurchases;
         }
