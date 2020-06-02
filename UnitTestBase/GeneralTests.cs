@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Common;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestBase
@@ -12,7 +10,7 @@ namespace UnitTestBase
         [TestMethod]
         public void RoundingPriceUpperSucceedTest()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "upper round", 3);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, GeneralTestCases.UPPER_ROUND, 3);
 
             GeneralTestsCases.RoundedPricesUpperAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
@@ -21,7 +19,7 @@ namespace UnitTestBase
         [TestMethod]
         public void RoundingPriceLowerSucceedTest()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "lower round", 3);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, GeneralTestCases.LOWER_ROUND, 3);
 
             GeneralTestsCases.RoundedPricesLowerAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
@@ -30,7 +28,7 @@ namespace UnitTestBase
         [TestMethod]
         public void PricePerInstallmentOver5000SucceedTest()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "over 5000", 3);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, GeneralTestCases.OVER_5000, 3);
 
             GeneralTestsCases.PricePerInstallmentOver5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
@@ -39,7 +37,7 @@ namespace UnitTestBase
         [TestMethod]
         public void PricePerInstallmentBelow5000SucceedTest()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "below 5000", 3);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, GeneralTestCases.BELOW_5000, 3);
 
             GeneralTestsCases.PricePerInstallmentBelow5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
         }

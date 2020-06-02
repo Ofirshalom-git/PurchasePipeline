@@ -7,7 +7,7 @@ namespace UnitTestBase
     public class TestCasesProviderDB : TestCasesProvider
     {
         //1
-        public ExpectedVSExsistingPurchases SendInvalidCreditCardPriorityCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidCreditCardPriorityCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, DBTestCase testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -17,7 +17,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "numeric":
+                case DBTestCase.NUMERIC:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNunericLine());
@@ -26,7 +26,7 @@ namespace UnitTestBase
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
                     break;
 
-                case "non numeric":
+                case DBTestCase.NON_NUMERIC:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidByPriorityRandomizer.GetInvalidCreditCardNonNunericLine());

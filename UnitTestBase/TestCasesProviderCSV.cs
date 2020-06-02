@@ -28,7 +28,7 @@ namespace UnitTestBase
         }
 
         //2
-        public ExpectedVSExsistingPurchases SendInvalidCSVLineStructute(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidCSVLineStructute(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, CSVTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -38,14 +38,14 @@ namespace UnitTestBase
 
             String CSVTextBody = "";
 
-            if (testCase == ";")
+            if (testCase == CSVTestCases.SEMI_COLON)
             {
                 var csvLine = rabbitMOLogics.ConvertCSVLineToText(randomizedLine);
 
                 randomizedLineText = csvLine.Replace(',', ';');
             }
 
-            if (testCase == "invalidNumOfFields")
+            if (testCase == CSVTestCases.EXTRA_FIELDS)
             {
                 var csvLine = rabbitMOLogics.ConvertCSVLineToText(randomizedLine);
 
@@ -69,7 +69,7 @@ namespace UnitTestBase
         }
 
         //3
-        public ExpectedVSExsistingPurchases SendInValidDateFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInValidDateFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, CSVTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -79,7 +79,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "dot":
+                case CSVTestCases.DOT:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidDateFormatLineDot());
@@ -88,8 +88,7 @@ namespace UnitTestBase
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
                     break;
 
-
-                case "opposite":
+                case CSVTestCases.OPPOSITE:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidDateFormatLineOpposite());
@@ -99,7 +98,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "month":
+                case CSVTestCases.MONTH:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidDateFormatLineMonth());
@@ -116,7 +115,7 @@ namespace UnitTestBase
         }
 
         //4
-        public ExpectedVSExsistingPurchases SendInValidStoreIdFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInValidStoreIdFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, CSVTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -126,7 +125,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "letters":
+                case CSVTestCases.LETTERS:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidStoreIdLineLetters());
@@ -136,7 +135,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "digits":
+                case CSVTestCases.DIGITS:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidStoreIdLineDigits());
@@ -146,7 +145,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "type":
+                case CSVTestCases.TYPE:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidStoreIdLineType());
@@ -156,7 +155,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "activity days":
+                case CSVTestCases.ACTIVITY_DAYS:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidStoreIdLineActivityDays());
@@ -173,7 +172,7 @@ namespace UnitTestBase
         }
         
         //5
-        public ExpectedVSExsistingPurchases SendInValidPriceFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInValidPriceFormatCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, CSVTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -183,7 +182,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "empty string":
+                case CSVTestCases.EMPTY_STRING:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidPriceLineEmptyString());
@@ -193,7 +192,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "string":
+                case CSVTestCases.STRING:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidPriceLineStringType());
@@ -232,7 +231,7 @@ namespace UnitTestBase
         }
 
         //7
-        public ExpectedVSExsistingPurchases SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, CSVTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -242,7 +241,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "full":
+                case CSVTestCases.FULL:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetLowerCaseFullInstallmentsLine());
@@ -251,7 +250,7 @@ namespace UnitTestBase
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
                     break;
                     
-                case "random":
+                case CSVTestCases.RANDOM:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvInvalidLineRandomizer.GetRandomalInstallmentsLine());

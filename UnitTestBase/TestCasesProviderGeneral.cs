@@ -7,7 +7,7 @@ namespace UnitTestBase
     public class TestCasesProviderGeneral : TestCasesProvider
     {
         //1
-        public ExpectedVSExsistingPurchases SendPriceToRoundCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendPriceToRoundCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, GeneralTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -17,7 +17,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "upper round":
+                case GeneralTestCases.UPPER_ROUND:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvLineRandomizer.RandomizeLineWithPriceToUpperRound());
@@ -26,8 +26,7 @@ namespace UnitTestBase
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
                     break;
 
-
-                case "lower round":
+                case GeneralTestCases.LOWER_ROUND:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvLineRandomizer.RandomizeLineWithPriceToLowerRound());
@@ -44,7 +43,7 @@ namespace UnitTestBase
         }
 
         //2
-        public ExpectedVSExsistingPurchases SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
+        public ExpectedVSExsistingPurchases SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, GeneralTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
 
@@ -54,7 +53,7 @@ namespace UnitTestBase
 
             switch (testCase)
             {
-                case "over 5000":
+                case GeneralTestCases.OVER_5000:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvLineRandomizer.RandomizeLineWithPriceToDivideOver5000());
@@ -64,7 +63,7 @@ namespace UnitTestBase
                     break;
 
 
-                case "below 5000":
+                case GeneralTestCases.BELOW_5000:
                     for (var i = 0; i < numOfLines; i++)
                     {
                         CSVLines.Add(CsvLineRandomizer.RandomizeLineWithPriceToDivideBelow5000());

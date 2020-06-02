@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Common;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestBase
@@ -11,7 +9,7 @@ namespace UnitTestBase
         [TestMethod]
         public void InvalidCreditCardReasonPriorityTestNumeric()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "numeric", 1);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, DBTestCase.NUMERIC, 1);
 
             DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
@@ -19,7 +17,7 @@ namespace UnitTestBase
         [TestMethod]
         public void InvalidCreditCardReasonPriorityTestNonNumeric()
         {
-            ExpectedVSExsistingPurchases expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "non numeric", 1);
+            ExpectedVSExsistingPurchases expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, DBTestCase.NON_NUMERIC, 1);
 
             DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
