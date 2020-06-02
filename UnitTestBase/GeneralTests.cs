@@ -12,53 +12,53 @@ namespace UnitTestBase
         [TestMethod]
         public void RoundingPriceUpperSucceedTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "upper round", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "upper round", 3);
 
-            GeneralTests.RoundedPricesUpperAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.RoundedPricesUpperAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         //system bug:)
         [TestMethod]
         public void RoundingPriceLowerSucceedTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "lower round", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendPriceToRoundCSVFile(RabbitMQLogics, DBCommunication, "lower round", 3);
 
-            GeneralTests.RoundedPricesLowerAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.RoundedPricesLowerAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         //system bug:)
         [TestMethod]
         public void PricePerInstallmentOver5000SucceedTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "over 5000", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "over 5000", 3);
 
-            GeneralTests.PricePerInstallmentOver5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.PricePerInstallmentOver5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         //system bug:)
         [TestMethod]
         public void PricePerInstallmentBelow5000SucceedTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "below 5000", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "below 5000", 3);
 
-            GeneralTests.PricePerInstallmentBelow5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.PricePerInstallmentBelow5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void StringPriceCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendInValidPriceTypeCSVFile(RabbitMQLogics, DBCommunication, 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendInValidPriceTypeCSVFile(RabbitMQLogics, DBCommunication, 3);
 
-            GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         //test succeed but fails because of a not related price bug
         [TestMethod]
         public void InvalidFailsValidSucceedCSVLinesInsertionTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendValidInvalidForInsertionCSVFile(RabbitMQLogics, DBCommunication);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTestsCases.SendValidInvalidForInsertionCSVFile(RabbitMQLogics, DBCommunication);
 
-            GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            GeneralTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
     }
 }

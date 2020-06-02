@@ -9,148 +9,124 @@ namespace UnitTestBase
     [TestClass]
     public class CSVTests : UnitTestBase
     {
-        [TestMethod]        
-        public void ValidCSVInsertionSucceedTest1()
-        {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendValidCSVFile(RabbitMQLogics, DBCommunication, 1);
-
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
-        }
-
         [TestMethod]
-        public void ValidCSVInsertionSucceedTest2()
+        public void ValidCSVInsertionSucceedTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendValidCSVFile(RabbitMQLogics, DBCommunication, 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendValidCSVFile(RabbitMQLogics, DBCommunication, 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
         
         [TestMethod]
-        public void InvalidCSVLineStructuteInsertionFailsTest1()
+        public void InvalidCSVStructuteSemiColonInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
-        public void InvalidCSVLineStructuteInsertionFailsTest2()
+        public void InvalidCSVStructuteExtraFieldsInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void InvalidCSVLineStructuteInsertionFailsTest3()
-        {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, ";", 3);
-
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
-        }
-
-        [TestMethod]
-        public void InvalidCSVLineStructuteInsertionFailsTest4()
-        {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidCSVLineStructute(RabbitMQLogics, DBCommunication, "invalidNumOfFields", 3);
-
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidDateFormatCSVLineInsertionFailsTestDot()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "dot", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "dot", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidDateFormatCSVLineInsertionFailsTestOpposite()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "opposite", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "opposite", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidDateFormatCSVLineInsertionFailsTestMonth()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "month", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidDateFormatCSVFile(RabbitMQLogics, DBCommunication, "month", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidStoreIdLettersCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "letters", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "letters", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidStoreIdDigitsCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "digits", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "digits", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidStoreIdTypeCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "type", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "type", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidStoreIdActivityDaysCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "activity days", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidStoreIdFormatCSVFile(RabbitMQLogics, DBCommunication, "activity days", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void EmptyStringPriceCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "empty string", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "empty string", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void StringPriceCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "string", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "string", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void NegitiveInstallmentsCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendNegitiveInstallmentsCSVFile(RabbitMQLogics, DBCommunication, 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendNegitiveInstallmentsCSVFile(RabbitMQLogics, DBCommunication, 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void LowerCaseFullStringInstallmentsCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "full", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "full", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void RandomalStringInstallmentsCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "random", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTestsCases.SendInvalidNonFullStringInstallmentsCSVFile(RabbitMQLogics, DBCommunication, "random", 3);
 
-            CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+            CSVTestsCases.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
     }
 }

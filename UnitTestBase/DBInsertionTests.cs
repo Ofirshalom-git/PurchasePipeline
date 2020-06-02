@@ -11,50 +11,50 @@ namespace UnitTestBase
         [TestMethod]
         public void InvalidCreditCardReasonPriorityTestNumeric()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "numeric", 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "numeric", 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidCreditCardReasonPriorityTestNonNumeric()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "non numeric", 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidCreditCardPriorityCSV(RabbitMQLogics, DBCommunication, "non numeric", 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         //system bug:)
         [TestMethod]
         public void InvalidInstallmentsOverflowPriorityTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidOverflowInstallmentsCSV(RabbitMQLogics, DBCommunication, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidOverflowInstallmentsCSV(RabbitMQLogics, DBCommunication, 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidNonActivityDatePriorityTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidNonActivityDateCSV(RabbitMQLogics, DBCommunication, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidNonActivityDateCSV(RabbitMQLogics, DBCommunication, 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidPerInstallmentsOverflowPriorityTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidPerInstallmentOverflowCSV(RabbitMQLogics, DBCommunication, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidPerInstallmentOverflowCSV(RabbitMQLogics, DBCommunication, 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
         [TestMethod]
         public void InvalidFutureDatePriorityTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTests.SendInvalidFutureDateCSV(RabbitMQLogics, DBCommunication, 1);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = DBTestsCases.SendInvalidFutureDateCSV(RabbitMQLogics, DBCommunication, 1);
 
-            DBTests.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
+            DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
     }
 }

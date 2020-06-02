@@ -8,9 +8,9 @@ namespace UnitTestBase
     {
         protected DBCommunication DBCommunication = new DBCommunication();
         protected RabbitMQLogics RabbitMQLogics = new RabbitMQLogics();
-        protected TestCasesProviderCSV CSVTests = new TestCasesProviderCSV();
-        protected TestCasesProviderDB DBTests = new TestCasesProviderDB();
-        protected TestCasesProviderGeneral GeneralTests = new TestCasesProviderGeneral();
+        protected TestCasesProviderCSV CSVTestsCases = new TestCasesProviderCSV();
+        protected TestCasesProviderDB DBTestsCases = new TestCasesProviderDB();
+        protected TestCasesProviderGeneral GeneralTestsCases = new TestCasesProviderGeneral();
 
         [TestInitialize]
         public void Initialize()

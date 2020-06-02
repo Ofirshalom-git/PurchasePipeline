@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="CSVTests.cs" />
     <Compile Include="DBInsertionTests.cs" />
+    <Compile Include="ExpectedVSExsistingPurchases.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="PerformenceSurvivabilityTests.cs" />
     <Compile Include="TestCasesProviderCSV.cs" />
