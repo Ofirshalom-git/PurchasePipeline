@@ -71,7 +71,6 @@ namespace UnitTestBase
             return existingAndExpectedPurchases;
         }
 
-
         //3
         public List<List<PurchaseDBBody>> SendInvalidNonActivityDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)
         {
@@ -115,7 +114,6 @@ namespace UnitTestBase
 
             return existingAndExpectedPurchases;
         }
-
 
         //5
         public List<List<PurchaseDBBody>> SendInvalidFutureDateCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, int numOfLines)

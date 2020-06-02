@@ -133,5 +133,12 @@ namespace Common
 
             return new Random().Next(0, (int)Convert.ToDouble(Price) * 10).ToString();
         }
+
+        public CSVPurchaseLine RandomizeLineWithPriceToUpperRound() =>
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "67.48", RandomizeInstallments());
+
+        public CSVPurchaseLine RandomizeLineWithPriceToLowerRound() =>
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
+
     }
 }

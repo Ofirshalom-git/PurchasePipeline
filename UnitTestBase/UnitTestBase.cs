@@ -13,6 +13,7 @@ namespace UnitTestBase
         protected RabbitMQLogics RabbitMQLogics = new RabbitMQLogics();
         protected TestCasesProviderCSV CSVTests = new TestCasesProviderCSV();
         protected TestCasesProviderDB DBTests = new TestCasesProviderDB();
+        protected TestCasesProviderGeneral GeneralTests = new TestCasesProviderGeneral();
 
         [TestInitialize]
         public void Initialize()

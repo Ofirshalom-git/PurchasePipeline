@@ -320,7 +320,24 @@ namespace Common
         }
 
         public PurchaseDBBody ExpectedPurchaseDBBody() =>
-            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
+            new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(),
+                double.Parse(GetExpectedPrice()), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
+        
+        //without expected ROUNDED price
+        //public PurchaseDBBody ExpectedPurchaseDBBody() =>
+            //new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
+
+        private string GetExpectedPrice()
+        {
+            var price = PayedPrice.ToString();
+
+            if (price.Contains(".")) 
+            {
+                return Math.Round(double.Parse(price), 1).ToString();
+            }
+
+            return price;
+        }
 
         private string ExpectedStoreType() =>
             StoreID[0].ToString();

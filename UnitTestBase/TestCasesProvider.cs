@@ -43,7 +43,6 @@ namespace UnitTestBase
             return false;
         }
 
-
         public bool WhyInvalidReasonIsSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
         {
             if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
@@ -66,6 +65,77 @@ namespace UnitTestBase
 
             return false;
         }
+
+        public bool PricePerInstallmentAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        {
+            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            {
+                return true;
+            }
+
+            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            {
+                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                {
+                    if (expectedAndExistingPurchaces[0][i].PricePerInstallment != expectedAndExistingPurchaces[1][i].PricePerInstallment)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool RoundedPricesUpperAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        {
+            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            {
+                return true;
+            }
+
+            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            {
+                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                {
+                    if ("67.5" != expectedAndExistingPurchaces[1][i].TotalPrice.ToString())
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool RoundedPricesLowerAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
+        {
+            if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
+            {
+                return true;
+            }
+
+            if (expectedAndExistingPurchaces[0].Count == expectedAndExistingPurchaces[1].Count)
+            {
+                for (var i = 0; i < expectedAndExistingPurchaces[0].Count; i++)
+                {
+                    if ("39.4" != expectedAndExistingPurchaces[1][i].TotalPrice.ToString())
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+
 
     }
 }

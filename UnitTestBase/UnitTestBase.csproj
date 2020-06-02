@@ -65,13 +65,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CSVTests.cs" />
-    <Compile Include="DataRowAttribute.cs" />
-    <Compile Include="DBInsertionTest.cs" />
+    <Compile Include="DBInsertionTests.cs" />
     <Compile Include="GeneralTests.cs" />
     <Compile Include="PerformenceSurvivabilityTests.cs" />
     <Compile Include="TestCasesProviderCSV.cs" />
     <Compile Include="TestCasesProvider.cs" />
     <Compile Include="TestCasesProviderDB.cs" />
+    <Compile Include="TestCasesProviderGeneral.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

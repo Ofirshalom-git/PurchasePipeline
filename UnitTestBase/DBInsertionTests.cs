@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTestBase
 {
     [TestClass]
-    public class DBInsertionTest : UnitTestBase
+    public class DBInsertionTests : UnitTestBase
     {
         [TestMethod]
         public void InvalidCreditCardReasonPriorityTestNumeric()

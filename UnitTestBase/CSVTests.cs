@@ -122,7 +122,7 @@ namespace UnitTestBase
             CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void NumericStringPriceCSVLineInsertionFailsTest()
         {
             List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "numeric", 3);
