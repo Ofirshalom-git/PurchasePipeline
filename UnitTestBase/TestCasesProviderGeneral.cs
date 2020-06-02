@@ -111,5 +111,27 @@ namespace UnitTestBase
             return existingAndExpectedPurchases;
         }
 
+        //4
+        public List<List<PurchaseDBBody>> SendValidInvalidForInsertionCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics)
+        {
+            RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
+
+            RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
+
+            List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
+        
+            CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidPriceLineStringType());
+            CSVLines.Add(CsvLineRandomizer.RandomizeLine());
+            CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidStoreIdLineDigits());
+
+            rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
+
+            List<List<PurchaseDBBody>> existingAndExpectedPurchases = new List<List<PurchaseDBBody>>();
+            existingAndExpectedPurchases.Add(new CSVFile(CSVLines).ExpectedDBBodyPurchases());
+            existingAndExpectedPurchases.Add(dbLogics.GetAllPurchases());
+
+            return existingAndExpectedPurchases;
+        }
+
     }
 }

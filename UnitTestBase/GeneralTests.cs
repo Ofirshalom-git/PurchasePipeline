@@ -53,6 +53,15 @@ namespace UnitTestBase
             GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
+        //test succeed but fails because of a not relatedprice bug
+        [TestMethod]
+        public void InvalidFailsValidSucceedCSVLinesInsertionTest()
+        {
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = GeneralTests.SendValidInvalidForInsertionCSVFile(RabbitMQLogics, DBCommunication);
+
+            GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
+        }
+
 
     }
 }
