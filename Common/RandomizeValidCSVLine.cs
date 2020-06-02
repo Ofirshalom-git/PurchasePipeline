@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -26,10 +22,7 @@ namespace Common
         }
         
         public CSVPurchaseLine RandomizeLine() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
-
-        //public CSVPurchaseLine RandomizeLine() =>
-          //  new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), Price, RandomizeInstallments());
+            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), Price, RandomizeInstallments());
 
         public string RandomizeStoreId()
         {
@@ -48,10 +41,8 @@ namespace Common
             return storeId;
         }
 
-        public string RandomizeCreditCard()
-        {
-            return "4557446145890236";
-        }
+        public string GetCreditCardNumber() =>
+            "4557446145890236";
 
         public bool BoughtOnActivityDay(DateTime date)
         {
@@ -59,14 +50,13 @@ namespace Common
             {
                 case 'A':
                     return true;
-                    
-                    break;
 
                 case 'B':
                     if(date.DayOfWeek != DayOfWeek.Saturday)
                     {
                         return true;
                     }
+
                     break;
 
                 case 'C':
@@ -74,11 +64,11 @@ namespace Common
                     {
                         return true;
                     }
+
                     break;
 
                 case 'D':
                     return true;
-                    break;
             }
 
             return false;
@@ -100,7 +90,6 @@ namespace Common
 
             while (!BoughtOnActivityDay(date));
 
-            //return $"{year}-{month:D2}-{day:D2}";
             return date.ToString("yyyy-MM-dd");
         }
 
@@ -127,6 +116,7 @@ namespace Common
             {
                 case 0:
                     return "FULL";
+                
                 case 1:
                     return "";                
             }
@@ -135,17 +125,15 @@ namespace Common
         }
 
         public CSVPurchaseLine RandomizeLineWithPriceToUpperRound() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "67.48", RandomizeInstallments());
+            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "67.48", RandomizeInstallments());
 
         public CSVPurchaseLine RandomizeLineWithPriceToLowerRound() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
+            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
 
         public CSVPurchaseLine RandomizeLineWithPriceToDivideOver5000() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "18000", "3");
+            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "3");
 
         public CSVPurchaseLine RandomizeLineWithPriceToDivideBelow5000() =>
-            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "18000", "6");
-
-        
+            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "6");
     }
 }

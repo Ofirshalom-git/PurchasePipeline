@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -17,65 +13,64 @@ namespace Common
 
         //installments
         public CSVPurchaseLine GetNegitiveInstallmentsLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetNegitiveInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(), 
+                ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetNegitiveInstallments());
 
         public CSVPurchaseLine GetLowerCaseFullInstallmentsLine() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, "full");
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, "full");
         
         public CSVPurchaseLine GetRandomalInstallmentsLine() =>
-                    new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetRandomalStringInstallments());
+                    new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                        ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, GetRandomalStringInstallments());
                 
         //price
         public CSVPurchaseLine GetInvalidPriceLineEmptyString() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), "", ValidLineRandomizer.RandomizeInstallments());
-
-        public CSVPurchaseLine GetInvalidPriceLineNumeric() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceNumeric(), ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                ValidLineRandomizer.RandomizePurchaseDate(), "", ValidLineRandomizer.RandomizeInstallments());
 
         //price
         public CSVPurchaseLine GetInvalidPriceLineStringType() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), "feu3hu", ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                ValidLineRandomizer.RandomizePurchaseDate(), "feu3hu", ValidLineRandomizer.RandomizeInstallments());
 
         //storeId
         public CSVPurchaseLine GetInvalidStoreIdLineLetters() =>
-            new CSVPurchaseLine(GetInvalidStoreIdLetters(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(GetInvalidStoreIdLetters(), ValidLineRandomizer.GetCreditCardNumber(),
+                ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidStoreIdLineDigits() =>
-            new CSVPurchaseLine(GetInvalidStoreIdDigits(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(GetInvalidStoreIdDigits(), ValidLineRandomizer.GetCreditCardNumber(), 
+                ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidStoreIdLineType() =>
-                    new CSVPurchaseLine(GetInvalidStoreIdType(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+                    new CSVPurchaseLine(GetInvalidStoreIdType(), ValidLineRandomizer.GetCreditCardNumber(),
+                        ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidStoreIdLineActivityDays() =>
-                    new CSVPurchaseLine(GetInvalidStoreIdActivityDays(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+                    new CSVPurchaseLine(GetInvalidStoreIdActivityDays(), ValidLineRandomizer.GetCreditCardNumber(),
+                        ValidLineRandomizer.RandomizePurchaseDate(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         //date
         public CSVPurchaseLine GetInvalidDateFormatLineDot() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatDot(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                GetInvalidDateFormatDot(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidDateFormatLineOpposite() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatOpposite(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                GetInvalidDateFormatOpposite(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidDateFormatLineMonth() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatMonth(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
-
-        //make it invalid by adding get future date action
-        public CSVPurchaseLine GetInvalidDateFormatLineFuture() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), RandomizeInvalidDateFormatMonth(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
-
-        //Actualizing
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.GetCreditCardNumber(),
+                GetInvalidDateFormatMonth(), ValidLineRandomizer.Price, ValidLineRandomizer.RandomizeInstallments());
 
         //installments
         private string GetNegitiveInstallments()
         {
-            String negativeInstallments = "";
-
             Random installmentsRnd = new Random();
             int installments = (int)installmentsRnd.Next(-5000, -1);
 
-            negativeInstallments += installments;
-
-            return negativeInstallments;
+            return installments.ToString();
         }
 
         private string GetRandomalStringInstallments() => 
@@ -95,133 +90,28 @@ namespace Common
 
             return payedPrice;
         }
-        
+
         //storeId
-        private string GetInvalidStoreIdLetters()
-        {
-            String storeId = "";
+        private string GetInvalidStoreIdLetters() =>
+            "BCA12345";
 
-            Random rnd = new Random();
-            int storeType = (int)rnd.Next(65, 70);
-            storeId += Char.ConvertFromUtf32(storeType);
+        private string GetInvalidStoreIdDigits() =>
+            "CA123456";
 
-            int storeActivityDays = (int)rnd.Next(65, 68);
-            storeId += Char.ConvertFromUtf32(storeActivityDays);
+        private string GetInvalidStoreIdType() =>
+            "KC12345";
 
-            int spareLetter = (int)rnd.Next(65, 68);
-            storeId += Char.ConvertFromUtf32(spareLetter);
-
-            int storeNumericId = (int)rnd.Next(10000, 99999);
-            storeId += storeNumericId.ToString();
-
-            return storeId;
-        }
-
-        private string GetInvalidStoreIdDigits()
-        {
-            String storeId = "";
-
-            Random rnd = new Random();
-            int storeType = (int)rnd.Next(65, 70);
-            storeId += Char.ConvertFromUtf32(storeType);
-
-            int storeActivityDays = (int)rnd.Next(65, 68);
-            storeId += Char.ConvertFromUtf32(storeActivityDays);
-
-            int storeNumericId = (int)rnd.Next(100000, 999999);
-            storeId += storeNumericId.ToString();
-
-            return storeId;
-        }
-
-        private string GetInvalidStoreIdType()
-        {
-            String storeId = "";
-
-            Random rnd = new Random();
-            int storeType = (int)rnd.Next(71, 80);
-            storeId += Char.ConvertFromUtf32(storeType);
-
-            int storeActivityDays = (int)rnd.Next(65, 68);
-            storeId += Char.ConvertFromUtf32(storeActivityDays);
-
-            int storeNumericId = (int)rnd.Next(10000, 99999);
-            storeId += storeNumericId.ToString();
-
-            return storeId;
-        }
-
-        private string GetInvalidStoreIdActivityDays()
-        {
-            String storeId = "";
-
-            Random rnd = new Random();
-            int storeType = (int)rnd.Next(65, 70);
-            storeId += Char.ConvertFromUtf32(storeType);
-
-            int storeActivityDays = (int)rnd.Next(69, 80);
-            storeId += Char.ConvertFromUtf32(storeActivityDays);
-
-            int storeNumericId = (int)rnd.Next(10000, 99999);
-            storeId += storeNumericId.ToString();
-
-            return storeId;
-        }
+        private string GetInvalidStoreIdActivityDays() =>
+            "AZ12345";
 
         //date
-        private string RandomizeInvalidDateFormatDot()
-        {
-            String purchaseDate = "";
+        private string GetInvalidDateFormatDot() =>
+            "2020.04.01";
 
-            Random yearRnd = new Random();
-            int year = (int)yearRnd.Next(1000, DateTime.Now.Year - 1);
+        private string GetInvalidDateFormatOpposite() =>
+            "01-04-2020";
 
-            Random monthRnd = new Random();
-            int month = (int)yearRnd.Next(1, 12);
-
-            Random dayRnd = new Random();
-            int day = (int)yearRnd.Next(1, 28);
-
-            purchaseDate += $"{year}.{month}.{day}";
-
-            return purchaseDate.ToString();
-        }
-
-        private string RandomizeInvalidDateFormatOpposite()
-        {
-            String purchaseDate = "";
-
-            Random yearRnd = new Random();
-            int year = (int)yearRnd.Next(1000, DateTime.Now.Year - 1);
-
-            Random monthRnd = new Random();
-            int month = (int)yearRnd.Next(1, 12);
-
-            Random dayRnd = new Random();
-            int day = (int)yearRnd.Next(1, 28);
-
-            purchaseDate += $"{day}-{month}-{year}";
-
-            return purchaseDate.ToString();
-        }
-
-        private string RandomizeInvalidDateFormatMonth()
-        {
-            String purchaseDate = "";
-
-            Random yearRnd = new Random();
-            int year = (int)yearRnd.Next(1000, DateTime.Now.Year - 1);
-
-            Random monthRnd = new Random();
-            int month = (int)yearRnd.Next(13, 99);
-
-            Random dayRnd = new Random();
-            int day = (int)yearRnd.Next(1, 28);
-
-            purchaseDate += $"{year}-{month}-{day}";
-
-            return purchaseDate.ToString();
-        }
-
+        private string GetInvalidDateFormatMonth() =>
+            "2020.43.01";
     }
 }

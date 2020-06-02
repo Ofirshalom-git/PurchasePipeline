@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -61,15 +56,8 @@ namespace Common
         private bool IsValidPriceForInsertion()
         {
             double price;
+
             return (double.TryParse(PayedPrice.ToString(), out price));
-            //double price;
-
-            //if(double.TryParse(PayedPrice, out price))
-            //{
-            //    return (price / int.Parse(Payments.ToString()) > 0 && price / int.Parse(Payments.ToString()) < 5000);
-            //}
-
-            //return false;
         }
 
         private bool IsValidInstallmentsForInsertion()
@@ -79,6 +67,7 @@ namespace Common
             {
                 return (PaymentsValue >= 1);
             }
+
             else if (Payments == "" || Payments == "FULL" )
             {
                 return true;
@@ -115,7 +104,6 @@ namespace Common
         {
             if(PurchaseDate.Length == 10 && (PurchaseDate[4] == '-' && PurchaseDate[7] == '-'))
             {
-                //yyyy-MM-dd format validation
                 int num;
                 for(var i = 0; i < 10; i++)
                 {
@@ -127,51 +115,6 @@ namespace Common
                         }
                     }
                 }
-
-                //not a future date validation
-                //try
-                //{
-                //    DateTime newDate = DateTime.ParseExact(PurchaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-                //    if (newDate.Year > DateTime.Today.Year)
-                //    {
-                //        return false;
-                //    }
-
-                //    if (newDate.Year == DateTime.Today.Year)
-                //    {
-                //        if (newDate.Month > DateTime.Today.Month)
-                //        {
-                //            return false;
-                //        }
-
-                //        if (newDate.Month == DateTime.Today.Month)
-                //        {
-                //            if (newDate.Day > DateTime.Today.Day)
-                //            {
-                //                return false;
-                //            }
-                //        }
-                //    }
-
-                //    if (newDate.Month > 12 || newDate.Month < 1)
-                //    {
-                //        return false;
-                //    }
-
-                //    if (newDate.Day > 31 || newDate.Day < 1)
-                //    {
-                //        return false;
-                //    }
-
-                //    //bought on activity day validation
-                //    return IsBoughtOnActivityDay(newDate);
-                //}
-
-                //catch
-                //{
-                //    return false;
-                //}
 
                 return true;
             }
@@ -225,17 +168,8 @@ namespace Common
 
         private bool IsValidCreditCard()
         {
-            if(CardID.Length == 16)
+            if(CardID == "4557446145890236")
             {
-                int num;
-                for(var i = 0; i < 16; i++)
-                {
-                    if(!int.TryParse(CardID[i].ToString(), out num))
-                    {
-                        return false;
-                    }
-                }
-
                 return true;
             }
 
@@ -323,10 +257,6 @@ namespace Common
             new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(),
                 double.Parse(GetExpectedPrice()), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
         
-        //without expected ROUNDED price
-        //public PurchaseDBBody ExpectedPurchaseDBBody() =>
-            //new PurchaseDBBody("unknown", ExpectedStoreType(), ExpectedStoreId(), ExpectedActivityDays(), CardID, PurchaseDate, GetStringInsertionDate(), double.Parse(PayedPrice), ExpectedNumOfInstallments(), ExpectedPricePerInstallment(), ExpectedIsValidNumber(), WhyInvalidAsPurchase());
-
         private string GetExpectedPrice()
         {
             var price = PayedPrice.ToString();
@@ -342,11 +272,11 @@ namespace Common
         private string ExpectedStoreType() =>
             StoreID[0].ToString();
 
-        private string ExpectedStoreId() =>
-            StoreID;
-
         private string ExpectedActivityDays() =>
             StoreID[1].ToString();
+
+        private string ExpectedStoreId() =>
+            StoreID;
 
         private string GetStringInsertionDate()
         {
@@ -372,6 +302,6 @@ namespace Common
         }
 
         private double ExpectedPricePerInstallment() =>
-            double.Parse(PayedPrice)/ExpectedNumOfInstallments();
+            double.Parse(PayedPrice.ToString())/ExpectedNumOfInstallments();
     }
 }

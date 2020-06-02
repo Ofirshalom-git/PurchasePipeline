@@ -1,17 +1,11 @@
 ﻿using Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestAutomaition;
 
 namespace UnitTestBase
 {
     public class TestCasesProviderDB : TestCasesProvider
     {
-        //DB insertion tests
-
         //1
         public List<List<PurchaseDBBody>> SendInvalidCreditCardPriorityCSV(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, string testCase, int numOfLines)
         {
@@ -136,7 +130,5 @@ namespace UnitTestBase
 
             return existingAndExpectedPurchases;
         }
-
     }
-
 }

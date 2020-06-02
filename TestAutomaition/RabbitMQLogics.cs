@@ -1,11 +1,6 @@
-﻿using DAL;
-using RabbitMQ;
-using Common;
+﻿using Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using RabbitMQ.Client;
 
 namespace TestAutomaition
@@ -54,10 +49,8 @@ namespace TestAutomaition
             {
                 return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{int.Parse(purchase.Payments.ToString())}";
             }
-            else
-            {
-                return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice}";
-            }
+            
+            return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice}";
         }
     }
 }

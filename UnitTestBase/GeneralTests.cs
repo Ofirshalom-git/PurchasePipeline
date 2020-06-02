@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -53,7 +52,7 @@ namespace UnitTestBase
             GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
-        //test succeed but fails because of a not relatedprice bug
+        //test succeed but fails because of a not related price bug
         [TestMethod]
         public void InvalidFailsValidSucceedCSVLinesInsertionTest()
         {
@@ -61,7 +60,5 @@ namespace UnitTestBase
 
             GeneralTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
-
-
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common;
 using TestAutomaition;
 
@@ -202,10 +199,10 @@ namespace UnitTestBase
                     break;
 
 
-                case "numeric":
+                case "string":
                     for (var i = 0; i < numOfLines; i++)
                     {
-                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidPriceLineNumeric());
+                        CSVLines.Add(CsvInvalidLineRandomizer.GetInvalidPriceLineStringType());
                     }
 
                     rabbitMOLogics.SendCSVToRabbitMQ(new CSVFile(CSVLines));
@@ -278,7 +275,5 @@ namespace UnitTestBase
 
             return existingAndExpectedPurchases;
         }
-
-
     }
 }

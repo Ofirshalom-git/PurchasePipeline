@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Common;
 using FluentAssertions;
 using System.Collections.Generic;
@@ -122,10 +121,10 @@ namespace UnitTestBase
             CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
-        //[TestMethod]
-        public void NumericStringPriceCSVLineInsertionFailsTest()
+        [TestMethod]
+        public void StringPriceCSVLineInsertionFailsTest()
         {
-            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "numeric", 3);
+            List<List<PurchaseDBBody>> expectedAndExistingPurchases = CSVTests.SendInValidPriceFormatCSVFile(RabbitMQLogics, DBCommunication, "string", 3);
 
             CSVTests.DBPurchacesAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Common
 {
     public class CSVFile
     {
         public List<CSVPurchaseLine> Purchases { get; set; }
-
-        public CSVFile()
-        {
-
-        }
 
         public CSVFile(List<CSVPurchaseLine> purchases)
         {

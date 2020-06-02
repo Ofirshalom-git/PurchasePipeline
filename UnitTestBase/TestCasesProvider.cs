@@ -1,15 +1,10 @@
 ﻿using Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestBase
 {
     public class TestCasesProvider
     {
-
         public bool DBPurchacesAreSame(List<List<PurchaseDBBody>> expectedAndExistingPurchaces)
         {
             if (expectedAndExistingPurchaces[0].Count == 0 && expectedAndExistingPurchaces[1].Count == 0)
@@ -157,6 +152,5 @@ namespace UnitTestBase
 
             return false;
         }
-
     }
 }
