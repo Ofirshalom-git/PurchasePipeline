@@ -27,10 +27,14 @@ namespace Common
                 
         //price
         public CSVPurchaseLine GetInvalidPriceLineEmptyString() =>
-            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceEmptyString(), ValidLineRandomizer.RandomizeInstallments());
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), "", ValidLineRandomizer.RandomizeInstallments());
 
         public CSVPurchaseLine GetInvalidPriceLineNumeric() =>
             new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), GetInvalidPriceNumeric(), ValidLineRandomizer.RandomizeInstallments());
+
+        //price
+        public CSVPurchaseLine GetInvalidPriceLineStringType() =>
+            new CSVPurchaseLine(ValidLineRandomizer.RandomizeStoreId(), ValidLineRandomizer.RandomizeCreditCard(), ValidLineRandomizer.RandomizePurchaseDate(), "feu3hu", ValidLineRandomizer.RandomizeInstallments());
 
         //storeId
         public CSVPurchaseLine GetInvalidStoreIdLineLetters() =>
@@ -76,10 +80,6 @@ namespace Common
 
         private string GetRandomalStringInstallments() => 
             new Guid().ToString();
-
-        //price
-        private string GetInvalidPriceEmptyString() =>
-            "";
 
         private string GetInvalidPriceNumeric()
         {

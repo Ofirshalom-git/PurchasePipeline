@@ -140,5 +140,12 @@ namespace Common
         public CSVPurchaseLine RandomizeLineWithPriceToLowerRound() =>
             new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
 
+        public CSVPurchaseLine RandomizeLineWithPriceToDivideOver5000() =>
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "18000", "3");
+
+        public CSVPurchaseLine RandomizeLineWithPriceToDivideBelow5000() =>
+            new CSVPurchaseLine(_storeId, RandomizeCreditCard(), RandomizePurchaseDate(), "18000", "6");
+
+        
     }
 }
