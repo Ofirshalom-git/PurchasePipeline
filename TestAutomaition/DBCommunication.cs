@@ -16,8 +16,7 @@ namespace TestAutomaition
         public List<PurchaseDBBody> GetAllPurchases() =>
             DBActions.GetAllPurchases();
 
-        public void deleteAllPurchases() =>
+        public void DeleteAllPurchases() =>
             DBActions.DeleteAllPurchases();
-
     }
 }

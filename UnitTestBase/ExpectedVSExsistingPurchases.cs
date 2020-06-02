@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Common;
 
 namespace UnitTestBase
 {
+    //CR {711mikik} - MA ZE
     public class ExpectedVSExsistingPurchases
     {
         public List<PurchaseDBBody> ExpectedPurchases { get; set; }
@@ -17,7 +14,5 @@ namespace UnitTestBase
             ExpectedPurchases = expectedPurchases;
             ExistingPurchases = existingPurchases;
         }
-
-
     }
 }

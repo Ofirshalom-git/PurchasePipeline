@@ -6,6 +6,7 @@ namespace UnitTestBase
     [TestClass]
     public class GeneralTests : UnitTestBase
     {
+        //CR {711mikik} - weird comment. What does it mean?
         //system bug:)
         [TestMethod]
         public void RoundingPriceUpperSucceedTest()
@@ -15,6 +16,7 @@ namespace UnitTestBase
             GeneralTestsCases.RoundedPricesUpperAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
+        //CR {711mikik} - weird comment. What does it mean?
         //system bug:)
         [TestMethod]
         public void RoundingPriceLowerSucceedTest()
@@ -24,6 +26,7 @@ namespace UnitTestBase
             GeneralTestsCases.RoundedPricesLowerAreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
 
+        //CR {711mikik} - weird comment. What does it mean?
         //system bug:)
         [TestMethod]
         public void PricePerInstallmentOver5000SucceedTest()
@@ -32,7 +35,7 @@ namespace UnitTestBase
 
             GeneralTestsCases.PricePerInstallmentOver5000AreSame(expectedAndExistingPurchases).Should().BeTrue();
         }
-
+        //CR {711mikik} - weird comment. What does it mean?
         //system bug:)
         [TestMethod]
         public void PricePerInstallmentBelow5000SucceedTest()

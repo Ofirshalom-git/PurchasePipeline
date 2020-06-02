@@ -2,28 +2,31 @@
 
 namespace Common
 {
+    //CR {711mikik} - This entire class looks the same as CSVPurchaseLine.... everything is duplicated more or less
     public class RandomizeValidCSVLine
     {
         public string Price { get; set; }
-        private static Random _numberUnit { get; set; }
-        private static Random _yearRnd { get; set; }
-        private static Random _monthRnd { get; set; }
-        private static Random _dayRnd { get; set; }
-        private static string _storeId {get; set;}
+        //CR {711mikik} - why underline?
+        private Random NumberUnit { get; set; }
+        private Random YearRnd { get; set; }
+        private Random MonthRnd { get; set; }
+        private Random DayRnd { get; set; }
+        private string StoreId {get; set;}
 
         public RandomizeValidCSVLine()
         {
             Price = RandomizePayedPrice();
-            _numberUnit = new Random();
-            _yearRnd = new Random();
-            _monthRnd = new Random();
-            _dayRnd = new Random();
-            _storeId = RandomizeStoreId();
+            NumberUnit = new Random();
+            YearRnd = new Random();
+            MonthRnd = new Random();
+            DayRnd = new Random();
+            StoreId = RandomizeStoreId();
         }
         
         public CSVPurchaseLine RandomizeLine() =>
-            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), Price, RandomizeInstallments());
+            new CSVPurchaseLine(StoreId, GetCreditCardNumber(), RandomizePurchaseDate(), Price, RandomizeInstallments());
 
+        //CR {711mikik} - why not just make one and use it? why randomize?
         public string RandomizeStoreId()
         {
             String storeId = "";
@@ -40,13 +43,14 @@ namespace Common
 
             return storeId;
         }
-
+        //CR {711mikik} - again with the one line thing
         public string GetCreditCardNumber() =>
             "4557446145890236";
 
         public bool BoughtOnActivityDay(DateTime date)
         {
-            switch (_storeId[1])
+            //CR {711mikik} - you did this code already..... find a way to make it to one method
+            switch (StoreId[1])
             {
                 case 'A':
                     return true;
@@ -81,9 +85,9 @@ namespace Common
 
             do 
             {
-                year = _yearRnd.Next(1000, DateTime.Now.Year - 1);
-                month = _monthRnd.Next(1, 12);
-                day = _dayRnd.Next(1, 28);
+                year = YearRnd.Next(1000, DateTime.Now.Year - 1);
+                month = MonthRnd.Next(1, 12);
+                day = DayRnd.Next(1, 28);
 
                 date = new DateTime(year, month, day);
             }
@@ -98,7 +102,7 @@ namespace Common
             String payedPrice = "";
 
             Random priceRnd = new Random();
-            int price = (int)priceRnd.Next(0, 5000);
+            int price = priceRnd.Next(0, 5000);
 
             Random decimalPriceRnd = new Random();
             int decimalPrice = (int)decimalPriceRnd.Next(0, 100);
@@ -125,15 +129,15 @@ namespace Common
         }
 
         public CSVPurchaseLine RandomizeLineWithPriceToUpperRound() =>
-            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "67.48", RandomizeInstallments());
+            new CSVPurchaseLine(StoreId, GetCreditCardNumber(), RandomizePurchaseDate(), "67.48", RandomizeInstallments());
 
         public CSVPurchaseLine RandomizeLineWithPriceToLowerRound() =>
-            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
+            new CSVPurchaseLine(StoreId, GetCreditCardNumber(), RandomizePurchaseDate(), "39.45", RandomizeInstallments());
 
         public CSVPurchaseLine RandomizeLineWithPriceToDivideOver5000() =>
-            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "3");
+            new CSVPurchaseLine(StoreId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "3");
 
         public CSVPurchaseLine RandomizeLineWithPriceToDivideBelow5000() =>
-            new CSVPurchaseLine(_storeId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "6");
+            new CSVPurchaseLine(StoreId, GetCreditCardNumber(), RandomizePurchaseDate(), "18000", "6");
     }
 }

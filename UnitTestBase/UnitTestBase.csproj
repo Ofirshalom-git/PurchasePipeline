@@ -70,7 +70,6 @@
     <Compile Include="ExpectedVSExsistingPurchases.cs" />
     <Compile Include="GeneralTestCases.cs" />
     <Compile Include="GeneralTests.cs" />
-    <Compile Include="PerformenceSurvivabilityTests.cs" />
     <Compile Include="CSVTestCases.cs" />
     <Compile Include="TestCasesProviderCSV.cs" />
     <Compile Include="TestCasesProvider.cs" />

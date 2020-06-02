@@ -5,6 +5,8 @@ using TestAutomaition;
 
 namespace UnitTestBase
 {
+    //CR {711mikik} - Test case thing is weird
+    //CR {711mikik} - also same thing about 3 lines in init
     public class TestCasesProviderCSV : TestCasesProvider
     {
         //1

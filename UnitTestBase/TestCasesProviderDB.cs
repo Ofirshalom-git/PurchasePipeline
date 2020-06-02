@@ -4,6 +4,7 @@ using TestAutomaition;
 
 namespace UnitTestBase
 {
+    //CR {711mikik} - same as other tests... same 3 lines why not in init?
     public class TestCasesProviderDB : TestCasesProvider
     {
         //1

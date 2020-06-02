@@ -15,11 +15,6 @@
         public int IsValid { get; set; }
         public string WhyInvalid { get; set; }
         
-        public PurchaseDBBody()
-        {
-
-        }
-
         public PurchaseDBBody(string purchaseID, string storeType, string storeID, string activateDays, string creditCard,
             string purchaseDate, string insertionDate, double totalPrice, int installments,
             double pricePerInstallment, int isValid, string whyInvalid)

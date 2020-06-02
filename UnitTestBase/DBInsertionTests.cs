@@ -21,7 +21,7 @@ namespace UnitTestBase
 
             DBTestsCases.WhyInvalidReasonIsSame(expectedAndExistingPurchases).Should().BeTrue();
         }
-
+        //CR {711mikik} - weird comment
         //system bug:)
         [TestMethod]
         public void InvalidInstallmentsOverflowPriorityTest()

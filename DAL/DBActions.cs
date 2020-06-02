@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common;
-using System.Configuration;
 using MySql.Data.MySqlClient;
 
 namespace DAL
@@ -12,17 +11,7 @@ namespace DAL
 
         public DBActions()
         {
-            ConnectToDB();
-        }
-
-        private void ConnectToDB()
-        {
-            string server = ConfigurationManager.AppSettings["server"];
-            string database = ConfigurationManager.AppSettings["database"];
-            string uid = ConfigurationManager.AppSettings["uid"];
-            string password = ConfigurationManager.AppSettings["password"];
-            string connetionString;
-            connetionString = $"server=localhost;user=root;database=hafifot;password=root;";
+            string connetionString = $"server=localhost;user=root;database=hafifot;password=root;";
             this.Connection = new MySqlConnection(connetionString);
         }
 
@@ -31,8 +20,7 @@ namespace DAL
             this.Connection.Open();
 
             List<PurchaseDBBody> purchases = new List<PurchaseDBBody>();
-
-            var sqlQuery = "SELECT * FROM purchases";
+            string sqlQuery = "SELECT * FROM purchases";
             MySqlCommand command = new MySqlCommand(sqlQuery, this.Connection);
 
             MySqlDataReader dataReader = command.ExecuteReader();
@@ -51,7 +39,6 @@ namespace DAL
                     double.Parse(dataReader.GetValue(9).ToString()),
                     int.Parse(dataReader.GetValue(10).ToString()),
                     dataReader.GetValue(11).ToString()));
-                //Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "/n";    
             }
 
             EndCommand(dataReader, command);
@@ -59,6 +46,7 @@ namespace DAL
             return purchases;
         }
 
+        //CR {711mikik} - I am sure there is a better to format date
         private string GetFormatedDate(string unformatedDate)
         {
             String formatedDate = "";

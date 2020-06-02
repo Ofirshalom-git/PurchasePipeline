@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Common
 {
@@ -14,8 +15,8 @@ namespace Common
         public List<PurchaseDBBody> ExpectedDBBodyPurchases()
         {
             List<PurchaseDBBody> expectedPurchases = new List<PurchaseDBBody>();
-
-            foreach(var purchase in Purchases)
+            //CR {711mikik} - use link...
+            foreach (var purchase in Purchases)
             {
                 if (purchase.IsValidForDBInsertion())
                 {
@@ -23,6 +24,7 @@ namespace Common
                 }
             }
 
+            //Purchases.Where(purchase => purchase.IsValidForDBInsertion() == true)
             return expectedPurchases;
         }
     }

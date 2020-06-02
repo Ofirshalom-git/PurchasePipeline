@@ -4,14 +4,13 @@ using TestAutomaition;
 
 namespace UnitTestBase
 {
+    //CR {711mikik} - why didnt you put the constant 3 lines in initilize?
     public class TestCasesProviderGeneral : TestCasesProvider
     {
         //1
         public ExpectedVSExsistingPurchases SendPriceToRoundCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, GeneralTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
-
-            RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
 
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
 
@@ -43,11 +42,10 @@ namespace UnitTestBase
         }
 
         //2
+        //CR {711mikik} - Talk to me about it
         public ExpectedVSExsistingPurchases SendPriceToDivideToInstallmentsCSVFile(RabbitMQLogics rabbitMOLogics, DBCommunication dbLogics, GeneralTestCases testCase, int numOfLines)
         {
             RandomizeValidCSVLine CsvLineRandomizer = new RandomizeValidCSVLine();
-
-            RandomizeInvalidCSVLine CsvInvalidLineRandomizer = new RandomizeInvalidCSVLine(CsvLineRandomizer);
 
             List<CSVPurchaseLine> CSVLines = new List<CSVPurchaseLine>();
 

@@ -15,7 +15,7 @@ namespace UnitTestBase
         [TestInitialize]
         public void Initialize()
         {
-            DBCommunication.deleteAllPurchases();
+            DBCommunication.DeleteAllPurchases();
         }
     }
 }

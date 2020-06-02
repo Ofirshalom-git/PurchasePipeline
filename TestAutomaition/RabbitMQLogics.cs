@@ -7,6 +7,7 @@ namespace TestAutomaition
 {
     public class RabbitMQLogics
     {
+        private const string _routingKey = "TEST";
         private ConnectionFactory Factory { get; set; }
 
         public RabbitMQLogics()
@@ -14,10 +15,8 @@ namespace TestAutomaition
             Factory = new ConnectionFactory();
         }
 
-        public void SendCSVToRabbitMQ(CSVFile file)
-        {
+        public void SendCSVToRabbitMQ(CSVFile file) =>
             SendCSVStringBody(ConvertCSVFileToText(file));
-        }
 
         public void SendCSVStringBody(string CSVBody)
         {
@@ -26,7 +25,7 @@ namespace TestAutomaition
                 using(var channel = connection.CreateModel())
                 {
                     var message = Encoding.UTF8.GetBytes(CSVBody);
-                    channel.BasicPublish("", "TEST", null, message);
+                    channel.BasicPublish("", _routingKey, null, message);
                 }
             }
         }
@@ -38,14 +37,12 @@ namespace TestAutomaition
             {
                 body = $"{body}{ConvertCSVLineToText(purchase)}{Environment.NewLine}";
             }
-
             return body;
         }
 
         public string ConvertCSVLineToText(CSVPurchaseLine purchase)
         {
-            int PaymentValue;
-            if (int.TryParse(purchase.Payments.ToString(), out PaymentValue))
+            if (int.TryParse(purchase.Payments.ToString(), out int paymentValue))
             {
                 return $"{purchase.StoreID},{purchase.CardID},{purchase.PurchaseDate},{purchase.PayedPrice},{int.Parse(purchase.Payments.ToString())}";
             }
