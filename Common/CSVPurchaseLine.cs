@@ -95,15 +95,27 @@ namespace Common
 
         private bool IsValidPurchaseDateFormat()
         {
-            string pattern = @"\d{ 4}-\d{ 2}-\d{ 2}";
-            Match match = Regex.Match(PurchaseDate, pattern);
-            if(match.Success)
+            if (PurchaseDate.Length == 10 && (PurchaseDate[4] == '-' && PurchaseDate[7] == '-'))
             {
+                for (var i = 0; i < 10; i++)
+                {
+                    // 4 & 7 => the index of char '-' in the date
+                    if (i != 4 && i != 7)
+                    {
+                        //CR {711mikik} - Why not just return the outcome? why if and ! etc.
+                        if (!int.TryParse(PurchaseDate[i].ToString(), out int num))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
                 return true;
             }
 
             return false;
         }
+
 
         public bool IsValidAsPurchase(string price, DateTime purchaseDate) =>
             IsValidCreditCard() && IsValidOverflowInstallmentsAsPurchase(price) && IsValidOverflowPerInstallmentsAsPurchase(price) && IsValidDateNotLate(purchaseDate) && BoughtOnActivityDay;
@@ -241,7 +253,6 @@ namespace Common
 
             if (price.Contains(".")) 
             {
-                //CR {711mikik} - cant you just use double to int to round it?
                 return Math.Round(double.Parse(price), 1).ToString();
             }
 
@@ -260,7 +271,6 @@ namespace Common
         private string GetStringInsertionDate()
         {
             String date = "";
-            //CR {711mikik} - why not using different vars and string formatting? (the ${
             date += DateTime.Today.Year.ToString();
             date += "-";
             // D2 because the system's valid date format is two digits for month or day

@@ -12,20 +12,7 @@ namespace Common
             Purchases = purchases;
         }
 
-        public List<PurchaseDBBody> ExpectedDBBodyPurchases()
-        {
-            List<PurchaseDBBody> expectedPurchases = new List<PurchaseDBBody>();
-            //CR {711mikik} - use link...
-            foreach (var purchase in Purchases)
-            {
-                if (purchase.IsValidForDBInsertion())
-                {
-                    expectedPurchases.Add(purchase.ExpectedPurchaseDBBody());
-                }
-            }
-
-            //Purchases.Where(purchase => purchase.IsValidForDBInsertion() == true)
-            return expectedPurchases;
-        }
+        public List<PurchaseDBBody> ExpectedDBBodyPurchases() =>
+            new List<PurchaseDBBody>(Purchases.Where(purchase => purchase.IsValidForDBInsertion()).Select(p=>p.ExpectedPurchaseDBBody()).ToList());
     }
 }
